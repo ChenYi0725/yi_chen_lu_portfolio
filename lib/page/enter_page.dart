@@ -111,7 +111,7 @@ class _EnterPageState extends State<EnterPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const HomePage()),
+                      MaterialPageRoute(builder: (_) => HomePage()),
                     );
                   },
                 ),
