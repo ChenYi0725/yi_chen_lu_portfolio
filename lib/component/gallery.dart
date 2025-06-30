@@ -1,32 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:yi_chen_lu_protfolio/controller/photo_expansion_controller.dart';
-import 'package:yi_chen_lu_protfolio/photo_list.dart';
-import 'component/animated_photo.dart';
-import 'model/photo_model.dart';
+import 'package:yi_chen_lu_protfolio/component/animated_photo.dart';
 
-void main() {
-  runApp(const TestApp());
-}
+import '../controller/photo_expansion_controller.dart';
+import '../model/photo_model.dart';
 
-class TestApp extends StatelessWidget {
-  const TestApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(home: GridItemExpansionWithArrow(photoList: dancePhoto));
-  }
-}
-
-class GridItemExpansionWithArrow extends StatefulWidget {
-  const GridItemExpansionWithArrow({super.key, required this.photoList});
+class Gallery extends StatefulWidget {
+  const Gallery({super.key, required this.photoList});
   final List<Photo> photoList;
   @override
-  _GridItemExpansionWithArrowState createState() =>
-      _GridItemExpansionWithArrowState();
+  _GalleryState createState() => _GalleryState();
 }
 
-class _GridItemExpansionWithArrowState extends State<GridItemExpansionWithArrow>
-    with TickerProviderStateMixin {
+class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
   late final PhotoExpansionController _controller;
 
   @override
@@ -71,14 +57,13 @@ class _GridItemExpansionWithArrowState extends State<GridItemExpansionWithArrow>
               return Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    // _controller.toggle(actualIndex);
                     _controller.toggle(index: actualIndex, row: i);
                   },
 
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
-                      height: 100,
+                      height: 300,
                       child: AnimatedPhoto(
                         photo: widget.photoList[actualIndex],
                       ),
@@ -92,7 +77,7 @@ class _GridItemExpansionWithArrowState extends State<GridItemExpansionWithArrow>
         ),
       );
 
-      // 展開詳細區域 (永遠佔位，但動畫呈現)
+      //detail
       int tappedIndexInRow = _controller.expandedIndex != null
           ? _controller.expandedIndex! - i
           : 0;
@@ -125,6 +110,7 @@ class _GridItemExpansionWithArrowState extends State<GridItemExpansionWithArrow>
                           _controller.expandedIndex != null
                               ? ' ${widget.photoList[_controller.expandedIndex!].title}'
                               : 'error',
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       Positioned(
@@ -147,10 +133,7 @@ class _GridItemExpansionWithArrowState extends State<GridItemExpansionWithArrow>
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('精準箭頭定位')),
-      body: ListView(children: rowWidgets),
-    );
+    return Column(children: rowWidgets);
   }
 }
 

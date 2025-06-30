@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yi_chen_lu_protfolio/component/gallery.dart';
 import 'package:yi_chen_lu_protfolio/component/header_bar.dart';
 
 import '../constant.dart';
-import '../model/photo_grid.dart';
+import '../component/animated_photo.dart';
 import '../photo_list.dart';
 
 class DancePage extends StatelessWidget {
@@ -19,27 +20,8 @@ class DancePage extends StatelessWidget {
           context.go(route);
         },
       ),
-      body: Column(
-        children: [
-          // PhotoGridItem(photo: dancePhoto[0]),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: GridView.builder(
-                itemCount: dancePhoto.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, // 3欄
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  childAspectRatio: 1,
-                ),
-                itemBuilder: (context, index) {
-                  return PhotoGridItem(photo: dancePhoto[index]);
-                },
-              ),
-            ),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(children: [Gallery(photoList: dancePhoto)]),
       ),
     );
   }

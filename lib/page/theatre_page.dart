@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yi_chen_lu_protfolio/constant.dart';
+import '../component/gallery.dart';
 import '../component/header_bar.dart';
 import '../photo_list.dart';
-import '../model/photo_grid.dart';
+import '../component/animated_photo.dart';
 import 'package:go_router/go_router.dart';
 
 class TheatrePage extends StatelessWidget {
@@ -16,26 +17,8 @@ class TheatrePage extends StatelessWidget {
         },
       ),
       backgroundColor: themeColor,
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: GridView.builder(
-                itemCount: theatrePhoto.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, // 3欄
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  childAspectRatio: 1,
-                ),
-                itemBuilder: (context, index) {
-                  return PhotoGridItem(photo: theatrePhoto[index]);
-                },
-              ),
-            ),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(children: [Gallery(photoList: theatrePhoto)]),
       ),
     );
   }
