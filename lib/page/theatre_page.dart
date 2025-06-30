@@ -12,7 +12,7 @@ class TheatrePage extends StatelessWidget {
       appBar: HeaderBar(
         currentRoute: '/theatre',
         onNavItemSelected: (route) {
-          context.go(route); // 如果你有用 go_router
+          context.go(route);
         },
       ),
       backgroundColor: themeColor,

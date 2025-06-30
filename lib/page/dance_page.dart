@@ -21,6 +21,7 @@ class DancePage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          // PhotoGridItem(photo: dancePhoto[0]),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16),

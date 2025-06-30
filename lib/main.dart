@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-
       title: "protfolio",
-      // home: const Scaffold(body: SafeArea(child: HomePage())),
     );
   }
 }

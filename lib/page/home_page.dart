@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:yi_chen_lu_protfolio/constant.dart';
 import 'package:yi_chen_lu_protfolio/page/theatre_page.dart';
+
+import '../photo_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   void _startAutoFade() {
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       setState(() {
-        _currentIndex = (_currentIndex + 1) % entryPageCarouselList.length;
+        _currentIndex = (_currentIndex + 1) % homePagePhotoList.length;
       });
     });
   }
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final image = entryPageCarouselList[_currentIndex];
+    final image = homePagePhotoList[_currentIndex];
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(

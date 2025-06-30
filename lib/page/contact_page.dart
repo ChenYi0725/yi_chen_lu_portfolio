@@ -14,7 +14,7 @@ class ContactPage extends StatelessWidget {
       appBar: HeaderBar(
         currentRoute: '/contact',
         onNavItemSelected: (route) {
-          context.go(route); // 如果你有用 go_router
+          context.go(route);
         },
       ),
       backgroundColor: themeColor,
