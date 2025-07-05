@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yi_chen_lu_protfolio/component/animated_photo.dart';
+import 'package:yi_chen_lu_protfolio/component/photo_detail.dart';
 
 import '../controller/photo_expansion_controller.dart';
 import '../model/photo_model.dart';
@@ -76,7 +77,7 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
           ),
         ),
       );
-
+      //-----
       //detail
       int tappedIndexInRow = _controller.expandedIndex != null
           ? _controller.expandedIndex! - i
@@ -94,40 +95,12 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
             alignment: Alignment.topCenter,
             child: shouldShowDetail
-                ? Stack(
-                    alignment: Alignment.topLeft,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        width: double.infinity,
-                        height: 150,
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.black12,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          _controller.expandedIndex != null
-                              ? ' ${widget.photoList[_controller.expandedIndex!].title}'
-                              : 'error',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      Positioned(
-                        top: 0,
-                        left: tappedIndexInRow * cardWidth + cardWidth / 2 - 10,
-                        child: ClipPath(
-                          clipper: TriangleClipper(),
-                          child: Container(
-                            width: 20,
-                            height: 10,
-                            color: Colors.black12,
-                          ),
-                        ),
-                      ),
-                    ],
+                ? PhotoDetail(
+                    photo: widget.photoList[_controller.expandedIndex!],
+                    indicatorOffset:
+                        tappedIndexInRow * cardWidth + cardWidth / 2 - 10,
                   )
-                : const SizedBox(height: 0), // 保留空間但不顯示
+                : const SizedBox(height: 0),
           ),
         ),
       );

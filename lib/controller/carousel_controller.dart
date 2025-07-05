@@ -15,17 +15,25 @@ class CarouselProvider extends ChangeNotifier {
 
   void goToNext() {
     _currentIndex = (_currentIndex + 1) % images.length;
+    _resetTimer();
     notifyListeners();
   }
 
   void goToPrevious() {
     _currentIndex = (_currentIndex - 1 + images.length) % images.length;
+    _resetTimer();
     notifyListeners();
   }
 
   void goToIndex(int index) {
     _currentIndex = index;
+    _resetTimer();
     notifyListeners();
+  }
+
+  void _resetTimer() {
+    _timer?.cancel();
+    _startAutoSlide();
   }
 
   void _startAutoSlide() {
