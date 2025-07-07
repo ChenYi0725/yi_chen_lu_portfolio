@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yi_chen_lu_protfolio/resume_list.dart';
 import '../component/header_bar.dart';
+import '../component/resume_section.dart';
 import '../constant.dart';
 
 class ResumePage extends StatelessWidget {
@@ -16,7 +18,21 @@ class ResumePage extends StatelessWidget {
         },
       ),
       backgroundColor: themeColor,
-      body: Column(children: []),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ResumeSection(
+              title: 'LIGHTING DESIGNER',
+              items: resumeProgramItems,
+            ),
+            ResumeSection(
+              title: 'MASTER ELETRICTIAN',
+              items: resumeElectrician,
+            ),
+            ResumeSection(title: 'LIGHTING DESIGNER', items: resumeEducation),
+          ],
+        ),
+      ),
     );
   }
 }

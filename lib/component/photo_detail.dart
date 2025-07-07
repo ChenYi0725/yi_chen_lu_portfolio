@@ -27,7 +27,7 @@ class PhotoDetail extends StatelessWidget {
           child: Carousel(
             imageList: homePagePhotoList,
             title: photo.title,
-            detailContent: '${photo.title} detail',
+            detailContent: photo.photoDetail,
           ),
         ),
         Positioned(

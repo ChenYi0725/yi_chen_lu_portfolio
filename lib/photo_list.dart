@@ -34,7 +34,8 @@ final List<Photo> theatrePhoto = [
     coverImagePath:
         'assets/images/theatre/cries_and_whispers/cries_and_whispers (1).JPG',
     title: 'Cries and Whispers',
-
+    photoDetail:
+        'Director: You-Syuan Chen\nScenic Design: Yu-Ci Wang\nCostume Design: Jie-Rong Sia\nSound Design: Fang-Syuan Kang\nPhotographer: Yun-Cian Huang',
     contentImages: [
       'assets/images/theatre/cries_and_whispers/cries_and_whispers (1).JPG',
       'assets/images/theatre/cries_and_whispers/cries_and_whispers (2).JPG',
@@ -52,7 +53,8 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/dance/areca_nuts/areca_nuts (1).jpg',
     title: 'Areca Nuts',
-
+    photoDetail:
+        'Choreographer: Jhen-Wei Sia\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/areca_nuts/areca_nuts (1).jpg',
       'assets/images/dance/areca_nuts/areca_nuts (2).jpg',
@@ -63,7 +65,8 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/dance/my_name_is_shi/my_name_is_shi (1).JPG',
     title: 'My name is Shi',
-
+    photoDetail:
+        'Choreographer: Jhen-Wei Sia\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/my_name_is_shi/my_name_is_shi (1).JPG',
       'assets/images/dance/my_name_is_shi/my_name_is_shi (2).jpg',
@@ -74,7 +77,8 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/dance/nightmare/nightmare (1).jpg',
     title: 'Nightmare',
-
+    photoDetail:
+        'Choreographer: Guan-Ying Guo\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/nightmare/nightmare (1).jpg',
       'assets/images/dance/nightmare/nightmare (2).jpg',
@@ -85,7 +89,8 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/cover/cover (1).jpg',
     title: 'Roaming Dream',
-
+    photoDetail:
+        'Choreographer: Yi-Jie Cao\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/roaming_dream/roaming_dream (1).JPG',
       'assets/images/dance/roaming_dream/roaming_dream (1).png',
@@ -95,7 +100,8 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/dance/sword_tells/sword_tells (1).jpg',
     title: 'Sword Tells',
-
+    photoDetail:
+        'Choreographer: Sih-Han Ciao\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/sword_tells/sword_tells (1).jpg',
       'assets/images/dance/sword_tells/sword_tells (2).JPG',
@@ -110,7 +116,7 @@ final List<Photo> dancePhoto = [
     coverImagePath:
         'assets/images/dance/the_rhythm_of_ink/the_rhythm_of_ink (1).JPEG',
     title: 'The Rhythm of Ink',
-
+    photoDetail: 'Choreographer: Yi-Ning Ciou\nPhotographer: Wuhan',
     contentImages: [
       'assets/images/dance/the_rhythm_of_ink/the_rhythm_of_ink (1).JPEG',
       'assets/images/dance/the_rhythm_of_ink/the_rhythm_of_ink (2).JPEG',
