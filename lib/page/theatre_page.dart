@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yi_chen_lu_protfolio/component/center_in_wide_screen.dart';
 import 'package:yi_chen_lu_protfolio/constant.dart';
-import '../component/gallery.dart';
+import '../component/photo/gallery.dart';
 import '../component/header_bar.dart';
 import '../photo_list.dart';
-import '../component/animated_photo.dart';
+import '../component/photo/animated_photo.dart';
 import 'package:go_router/go_router.dart';
 
 class TheatrePage extends StatelessWidget {
@@ -18,7 +19,9 @@ class TheatrePage extends StatelessWidget {
       ),
       backgroundColor: themeColor,
       body: SingleChildScrollView(
-        child: Column(children: [Gallery(photoList: theatrePhoto)]),
+        child: CenterInWideScreen(
+          child: Column(children: [Gallery(photoList: theatrePhoto)]),
+        ),
       ),
     );
   }

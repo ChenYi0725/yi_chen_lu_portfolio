@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yi_chen_lu_protfolio/model/resume_program.dart';
 
-import '../constant.dart';
+import '../../constant.dart';
 
 class ResumeField extends StatelessWidget {
   const ResumeField({super.key, required this.resumeProgram});

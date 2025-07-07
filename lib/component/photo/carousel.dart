@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../constant.dart';
-import '../controller/carousel_controller.dart';
+import '../../constant.dart';
+import '../../controller/carousel_controller.dart';
 import 'dart:math';
 
 import 'carousel_thumbnail.dart';

@@ -11,3 +11,4 @@ TextStyle photoDetailContentStyle = TextStyle(
 double photoDetailHeight = 450;
 TextStyle resumeTitleTextStyle = TextStyle(color: Colors.white, fontSize: 32);
 TextStyle resumeTextStyle = TextStyle(color: Colors.white, fontSize: 14);
+// double

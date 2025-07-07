@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yi_chen_lu_protfolio/component/resume_field.dart';
-import '../constant.dart';
-import '../model/resume_program.dart';
+import 'package:yi_chen_lu_protfolio/component/resume/resume_field.dart';
+import '../../constant.dart';
+import '../../model/resume_program.dart';
 
 class ResumeSection<T> extends StatelessWidget {
   const ResumeSection({super.key, required this.title, required this.items});

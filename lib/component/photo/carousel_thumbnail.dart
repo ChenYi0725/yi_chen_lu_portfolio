@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-import '../controller/carousel_controller.dart';
+import '../../controller/carousel_controller.dart';
 
 class CarouselThumbnail extends StatelessWidget {
   final List<String> imageList;

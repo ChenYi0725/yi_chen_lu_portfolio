@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../constant.dart';
+import '../../constant.dart';
 import 'carousel.dart';
-import '../model/photo_model.dart';
-import '../photo_list.dart';
+import '../../model/photo_model.dart';
+import '../../photo_list.dart';
 import 'gallery.dart';
 
 class PhotoDetail extends StatelessWidget {
