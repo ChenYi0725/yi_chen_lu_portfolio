@@ -33,7 +33,7 @@ class AboutPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: AutoResizingText(
                   text: aboutPageContent,
-                  style: contactTextStyle,
+                  style: aboutTextStyle,
                 ),
               ),
             ),

@@ -27,8 +27,12 @@ class CarouselThumbnail extends StatelessWidget {
       width: thumbnailWidth * 5.5,
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(color: Colors.black54),
-          BoxShadow(color: Colors.grey, blurRadius: 5, spreadRadius: -5.0),
+          BoxShadow(color: Colors.black26), //inner shadow
+          BoxShadow(
+            color: Colors.grey[700]!,
+            blurRadius: 5,
+            spreadRadius: -5.0,
+          ),
         ],
       ),
       child: Center(
@@ -58,6 +62,7 @@ class CarouselThumbnail extends StatelessWidget {
                   }
 
                   return GestureDetector(
+                    //縮圖
                     onTap: () => provider.goToIndex(index),
                     child: Container(
                       width: thumbnailWidth,

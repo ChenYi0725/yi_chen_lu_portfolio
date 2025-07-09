@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yi_chen_lu_protfolio/model/resume_program.dart';
-
 import '../../constant.dart';
+import '../../controller/resume_provider.dart';
 
 class ResumeField extends StatelessWidget {
   const ResumeField({super.key, required this.resumeProgram});
@@ -17,47 +18,64 @@ class ResumeField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Text(resumeProgram.programName, style: resumeTextStyle),
-        ),
-        SizedBox(height: 50),
-        Expanded(
-          child: Text(resumeProgram.directorName, style: resumeTextStyle),
-        ),
-        SizedBox(height: 50),
-        Expanded(
-          child: Text(resumeProgram.performanceVenues, style: resumeTextStyle),
-        ),
-        Expanded(
-          child: Text(
-            resumeProgram.performanceLocation,
-            style: resumeTextStyle,
-          ),
-        ),
-        resumeProgram.programLink != ''
-            ? GestureDetector(
-                onTap: () {
-                  _launchUrl(resumeProgram.programLink);
-                },
-                child: InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 10,
-                    ),
-                    color: Colors.white,
-                    child: Text(
-                      "View Project",
-                      style: TextStyle(color: Colors.black87),
-                    ),
+    final hover = context.watch<HoverProvider>().isHovering;
+
+    return MouseRegion(
+      onEnter: (_) => context.read<HoverProvider>().setHover(true),
+      onExit: (_) => context.read<HoverProvider>().setHover(false),
+      cursor: SystemMouseCursors.click,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        // color: hover ? Colors.grey.shade50 : Colors.transparent,
+        child: Row(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(resumeProgram.programName, style: resumeTextStyle),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(resumeProgram.directorName, style: resumeTextStyle),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  resumeProgram.performanceVenues,
+                  style: resumeTextStyle,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  resumeProgram.performanceLocation,
+                  style: resumeTextStyle,
+                ),
+              ),
+            ),
+            if (resumeProgram.programLink.isNotEmpty && hover)
+              InkWell(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
+                  ),
+                  color: Colors.white,
+                  child: Text(
+                    "View Project",
+                    style: TextStyle(color: Colors.black87),
                   ),
                 ),
-              )
-            : SizedBox(height: 0),
-      ],
+              ),
+          ],
+        ),
+      ),
     );
   }
 }
