@@ -31,102 +31,98 @@ class Carousel extends StatelessWidget {
       child: Consumer<CarouselProvider>(
         builder: (context, provider, _) {
           return Center(
-            child: Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 3000),
-                        transitionBuilder:
-                            (Widget child, Animation<double> animation) {
-                              return FadeTransition(
-                                opacity: animation,
-                                child: ScaleTransition(
-                                  scale: animation,
-                                  child: child,
-                                ),
-                              );
-                            },
-                        child: SizedBox(
-                          width: displayImageWidth,
-                          height: displayImageHeight,
-                          child: ClipRect(
-                            child: Align(
-                              alignment: Alignment.topCenter,
-                              child: Image.asset(
-                                provider.currentImage,
-                                key: ValueKey(provider.currentImage),
-                                width: displayImageWidth,
-                                fit: BoxFit.fitWidth,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 3000),
+                      transitionBuilder:
+                          (Widget child, Animation<double> animation) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: ScaleTransition(
+                                scale: animation,
+                                child: child,
                               ),
+                            );
+                          },
+                      child: SizedBox(
+                        width: displayImageWidth,
+                        height: displayImageHeight,
+                        child: ClipRect(
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: Image.asset(
+                              provider.currentImage,
+                              key: ValueKey(provider.currentImage),
+                              width: displayImageWidth,
+                              fit: BoxFit.fitWidth,
                             ),
                           ),
                         ),
                       ),
+                    ),
 
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        child: GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTap: provider.goToPrevious,
-                          child: SizedBox(
-                            width: arrowTapArea,
-                            child: Icon(Icons.arrow_left, size: arrowSize),
-                          ),
+                    Positioned(
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: provider.goToPrevious,
+                        child: SizedBox(
+                          width: arrowTapArea,
+                          child: Icon(Icons.arrow_left, size: arrowSize),
                         ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                        child: GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTap: provider.goToNext,
-                          child: SizedBox(
-                            width: arrowTapArea,
-                            child: Icon(Icons.arrow_right, size: arrowSize),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  // 縮圖
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // 文字區域
-                          Text(title, style: photoDetailTitleStyle),
-                          Text(detailContent, style: photoDetailContentStyle),
-                          Spacer(),
-                          // 縮圖區域
-                          CarouselThumbnail(
-                            imageList: imageList,
-                            provider: provider,
-
-                            thumbnailWidth: thumbnailWidth,
-                            thumbnailHeight: thumbnailHeight,
-                            screenWidth: screenWidth,
-                          ),
-
-                          Spacer(flex: 2),
-                        ],
                       ),
                     ),
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: provider.goToNext,
+                        child: SizedBox(
+                          width: arrowTapArea,
+                          child: Icon(Icons.arrow_right, size: arrowSize),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                // 縮圖
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // 文字區域
+                        Text(title, style: photoDetailTitleStyle),
+                        Text(detailContent, style: photoDetailContentStyle),
+                        Spacer(),
+                        // 縮圖區域
+                        CarouselThumbnail(
+                          imageList: imageList,
+                          provider: provider,
+
+                          thumbnailWidth: thumbnailWidth,
+                          thumbnailHeight: thumbnailHeight,
+                          screenWidth: screenWidth,
+                        ),
+
+                        Spacer(flex: 2),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

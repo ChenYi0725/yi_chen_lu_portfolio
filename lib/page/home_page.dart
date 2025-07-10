@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:yi_chen_lu_protfolio/page/theatre_page.dart';
 
+import '../constant.dart';
 import '../photo_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -58,30 +60,23 @@ class _HomePageState extends State<HomePage> {
           ),
 
           Positioned(
-            top: screenWidth * 0.05,
+            top: screenWidth * 0.03,
             left: screenWidth * 0.05,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'YICHEN LU',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 60,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                const Text(
-                  'LIGHTING DESIGN',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: homePageNameStyle,
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 18),
+                Text(
+                  'LIGHTING DESIGN',
+                  style: homePageCareerStyle,
+                  textAlign: TextAlign.left,
+                ),
+                const SizedBox(height: 30),
                 GestureDetector(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
@@ -93,13 +88,9 @@ class _HomePageState extends State<HomePage> {
                       border: Border.all(color: Colors.white, width: 2),
                       // borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Explore',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: homePageEnterStyle,
                       textAlign: TextAlign.center,
                     ),
                   ),

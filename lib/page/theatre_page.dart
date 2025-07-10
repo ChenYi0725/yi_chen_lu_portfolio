@@ -19,9 +19,7 @@ class TheatrePage extends StatelessWidget {
       ),
       backgroundColor: themeColor,
       body: SingleChildScrollView(
-        child: CenterInWideScreen(
-          child: Column(children: [Gallery(photoList: theatrePhoto)]),
-        ),
+        child: Column(children: [Gallery(photoList: theatrePhoto)]),
       ),
     );
   }

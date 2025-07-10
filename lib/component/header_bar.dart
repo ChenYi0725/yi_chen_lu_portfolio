@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yi_chen_lu_protfolio/constant.dart';
 
 class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
   final String currentRoute;
@@ -28,64 +29,78 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () => context.go('/'),
-                  child: const Text(
-                    'YI CHEN LU',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-
-                // 右側導覽列
-                Row(
-                  children: navItems.map((item) {
-                    final isSelected = currentRoute == item['route'];
-                    return InkWell(
-                      onTap: () => onNavItemSelected(item['route']!),
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 12),
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        decoration: isSelected
-                            ? const BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.white,
-                                    width: 2,
-                                  ),
-                                ),
-                              )
-                            : null,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // 左側名稱
+                    Flexible(
+                      fit: FlexFit.loose,
+                      child: InkWell(
+                        onTap: () => context.go('/'),
                         child: Text(
-                          item['label']!,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: isSelected ? Colors.white : Colors.grey[300],
-                            fontWeight: isSelected
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
+                          'YI CHEN LU',
+                          style: headerBarNameStyle,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
                         ),
                       ),
-                    );
-                  }).toList(),
-                ),
-              ],
+                    ),
+
+                    // 導覽列
+                    Wrap(
+                      // ✅ 使用 Wrap 解決項目 overflow 的問題
+                      spacing: 24,
+                      children: navItems.map((item) {
+                        final isSelected = currentRoute == item['route'];
+                        return InkWell(
+                          onTap: () => onNavItemSelected(item['route']!),
+                          child: Container(
+                            constraints: const BoxConstraints(maxWidth: 100),
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            decoration: isSelected
+                                ? const BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.white,
+                                        width: 2,
+                                      ),
+                                    ),
+                                  )
+                                : null,
+                            child: Text(
+                              item['label']!,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
+                              style: headerBarTextStyle.copyWith(
+                                fontWeight: isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
-          // 分隔線
-          const Divider(height: 5, color: Colors.white54, thickness: 3),
+          Flexible(
+            fit: FlexFit.loose,
+            child: const Divider(
+              height: 5,
+              color: Colors.white54,
+              thickness: 3,
+            ),
+          ),
         ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(72); // 高度你可微調
+  Size get preferredSize => const Size.fromHeight(72);
 }
