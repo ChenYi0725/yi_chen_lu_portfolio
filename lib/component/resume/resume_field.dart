@@ -30,18 +30,21 @@ class ResumeField extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
+              flex: 2,
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Text(resumeProgram.programName, style: resumeTextStyle),
               ),
             ),
             Expanded(
+              flex: 2,
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Text(resumeProgram.directorName, style: resumeTextStyle),
               ),
             ),
             Expanded(
+              flex: 2,
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Text(
@@ -51,6 +54,7 @@ class ResumeField extends StatelessWidget {
               ),
             ),
             Expanded(
+              flex: 2,
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Text(
@@ -59,20 +63,29 @@ class ResumeField extends StatelessWidget {
                 ),
               ),
             ),
-            if (resumeProgram.programLink.isNotEmpty && hover)
-              InkWell(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 10,
-                  ),
-                  color: Colors.white,
-                  child: Text(
-                    "View Project",
-                    style: TextStyle(color: Colors.black87),
+            // if (resumeProgram.programLink.isNotEmpty && hover)
+            Expanded(
+              flex: 1,
+              child: Opacity(
+                opacity: hover ? 1.0 : 0.0,
+                child: InkWell(
+                  onTap: () => _launchUrl(resumeProgram.programLink),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 10,
+                    ),
+                    color: Colors.white,
+                    child: Center(
+                      child: Text(
+                        "View Project",
+                        style: TextStyle(color: Colors.black87),
+                      ),
+                    ),
                   ),
                 ),
               ),
+            ),
           ],
         ),
       ),

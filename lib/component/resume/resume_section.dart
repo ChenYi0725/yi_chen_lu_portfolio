@@ -16,11 +16,13 @@ class ResumeSection<T> extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 15),
         Padding(
           padding: EdgeInsets.only(left: resumePadding, right: resumePadding),
           child: Text(title, style: resumeTitleTextStyle),
         ),
         const Divider(color: Colors.white, height: 2, thickness: 3),
+        const SizedBox(height: 10),
         Padding(
           padding: EdgeInsets.only(left: resumePadding, right: resumePadding),
           child: Column(
@@ -36,16 +38,13 @@ class ResumeSection<T> extends StatelessWidget {
                   //純文字
                   return Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(
-                      item,
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                    child: Text(item, style: resumePureTextStyle),
                   );
                 } else {
                   return const SizedBox.shrink();
                 }
               } else {
-                return const SizedBox(height: 30); // 或你要的 spacing 高度
+                return const SizedBox(height: 20);
               }
             }),
           ),

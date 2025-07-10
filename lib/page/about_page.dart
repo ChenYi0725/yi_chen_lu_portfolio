@@ -28,13 +28,15 @@ class AboutPage extends StatelessWidget {
               ),
             ),
 
-            Expanded(
+            Flexible(
+              fit: FlexFit.loose,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: AutoResizingText(
-                  text: aboutPageContent,
-                  style: aboutTextStyle,
-                ),
+                child: Text(aboutPageContent, style: aboutTextStyle),
+                // AutoResizingText(
+                //   text: aboutPageContent,
+                //   style: aboutTextStyle,
+                // ),
               ),
             ),
           ],

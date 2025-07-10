@@ -59,7 +59,8 @@ class Carousel extends StatelessWidget {
                             child: Image.asset(
                               provider.currentImage,
                               key: ValueKey(provider.currentImage),
-                              width: displayImageWidth,
+                              // width: displayImageWidth,
+                              height: displayImageHeight,
                               fit: BoxFit.fitWidth,
                             ),
                           ),
@@ -76,7 +77,7 @@ class Carousel extends StatelessWidget {
                         onTap: provider.goToPrevious,
                         child: SizedBox(
                           width: arrowTapArea,
-                          child: Icon(Icons.arrow_left, size: arrowSize),
+                          // child: Icon(Icons.arrow_left, size: arrowSize),
                         ),
                       ),
                     ),
@@ -89,7 +90,7 @@ class Carousel extends StatelessWidget {
                         onTap: provider.goToNext,
                         child: SizedBox(
                           width: arrowTapArea,
-                          child: Icon(Icons.arrow_right, size: arrowSize),
+                          // child: Icon(Icons.arrow_right, size: arrowSize),
                         ),
                       ),
                     ),

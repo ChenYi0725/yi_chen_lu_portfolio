@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-
 import '../../controller/carousel_controller.dart';
 
 class CarouselThumbnail extends StatelessWidget {
@@ -24,10 +23,10 @@ class CarouselThumbnail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: thumbnailHeight * 1.5,
-      width: thumbnailWidth * 5.5,
+      width: thumbnailWidth * 6.5, // 5 thumbnails + 2 arrows with spacing
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(color: Colors.black26), //inner shadow
+          BoxShadow(color: Colors.black26),
           BoxShadow(
             color: Colors.grey[700]!,
             blurRadius: 5,
@@ -41,18 +40,19 @@ class CarouselThumbnail extends StatelessWidget {
           children: [
             _arrowButton(left: true, onTap: provider.goToPrevious),
             SizedBox(
-              width: min(3 * thumbnailWidth, screenWidth),
+              width: min(4 * thumbnailWidth, screenWidth),
               height: thumbnailHeight,
               child: ListView.builder(
                 padding: EdgeInsets.zero,
                 scrollDirection: Axis.horizontal,
-                itemCount: 3,
+                itemCount: 4,
                 itemBuilder: (context, i) {
                   int index;
-                  if (provider.currentIndex == 0) {
+
+                  if (provider.currentIndex <= 1) {
                     index = i;
-                  } else if (provider.currentIndex == imageList.length - 1) {
-                    index = imageList.length - 3 + i;
+                  } else if (provider.currentIndex >= imageList.length - 2) {
+                    index = imageList.length - 4 + i;
                   } else {
                     index = provider.currentIndex - 1 + i;
                   }
@@ -62,7 +62,6 @@ class CarouselThumbnail extends StatelessWidget {
                   }
 
                   return GestureDetector(
-                    //縮圖
                     onTap: () => provider.goToIndex(index),
                     child: Container(
                       width: thumbnailWidth,
@@ -84,11 +83,15 @@ class CarouselThumbnail extends StatelessWidget {
                             height: thumbnailHeight,
                             fit: BoxFit.cover,
                           ),
-                          if (index != provider.currentIndex)
+                          if (index == provider.currentIndex)
                             Positioned.fill(
                               child: Container(
+                                // color: Colors.white.withOpacity(0.7),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.7),
+                                  border: Border.all(
+                                    width: 2,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ),
                             ),

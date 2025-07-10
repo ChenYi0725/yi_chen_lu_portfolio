@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yi_chen_lu_protfolio/constant.dart';
 import 'package:yi_chen_lu_protfolio/model/photo_model.dart';
 
 class AnimatedPhoto extends StatefulWidget {
@@ -26,7 +27,6 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
           _opacity = 1.0;
         });
 
-        // 等下一幀再讓它移回中心，達到動畫效果
         WidgetsBinding.instance.addPostFrameCallback((_) {
           setState(() {
             _translation = Offset.zero;
@@ -42,7 +42,6 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
         });
       },
       child: Stack(
-        // clipBehavior: Clip.hardEdge,
         children: [
           Positioned.fill(
             child: Image.asset(widget.photo.coverImagePath, fit: BoxFit.cover),
@@ -61,7 +60,7 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
                     alignment: Alignment.center,
                     child: Text(
                       widget.photo.title,
-                      style: const TextStyle(color: Colors.white, fontSize: 36),
+                      style: animatedPhotoStyle,
                       textAlign: TextAlign.center,
                     ),
                   ),
