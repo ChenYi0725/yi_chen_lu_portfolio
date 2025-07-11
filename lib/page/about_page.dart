@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yi_chen_lu_protfolio/photo_list.dart';
 import 'package:yi_chen_lu_protfolio/string_content.dart';
 import '../component/auto_resizing_text.dart';
 import '../component/header_bar.dart';
@@ -24,7 +25,7 @@ class AboutPage extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8),
-                child: Image.asset('assets/images/cover/cover (3).jpg'),
+                child: Image.asset(aboutPhoto),
               ),
             ),
 

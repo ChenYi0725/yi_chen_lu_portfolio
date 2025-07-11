@@ -5,7 +5,6 @@ import '../../controller/carousel_controller.dart';
 class CarouselThumbnail extends StatelessWidget {
   final List<String> imageList;
   final CarouselProvider provider;
-
   final double thumbnailWidth;
   final double thumbnailHeight;
   final double screenWidth;

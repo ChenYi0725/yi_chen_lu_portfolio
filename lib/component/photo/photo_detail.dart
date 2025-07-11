@@ -25,7 +25,7 @@ class PhotoDetail extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(color: detailColor),
           child: Carousel(
-            imageList: homePagePhotoList,
+            imageList: photo.contentImages,
             title: photo.title,
             detailContent: photo.photoDetail,
           ),
