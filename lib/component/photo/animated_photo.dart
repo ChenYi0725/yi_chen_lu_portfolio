@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:yi_chen_lu_protfolio/constant.dart';
 import 'package:yi_chen_lu_protfolio/model/photo_model.dart';
@@ -15,15 +16,17 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
     with SingleTickerProviderStateMixin {
   Offset _translation = Offset.zero;
   double _opacity = 0.0;
+  Offset? _mousePosition;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (event) {
-        final size = context.size ?? Size.zero;
-        final offset = event.localPosition;
+        final size = context.size ?? Size.zero; //widget size
+        final mouseEnterPosition = event.localPosition; //相對於 widget 左上角
         setState(() {
-          _translation = _getDirectionOffset(offset, size);
+          _mousePosition = mouseEnterPosition; // 加這行
+          _translation = _getDirectionOffset(_mousePosition!, size);
           _opacity = 1.0;
         });
 
@@ -35,10 +38,18 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
       },
       onExit: (event) {
         final size = context.size ?? Size.zero;
-        final offset = event.localPosition;
+        final mouseEnterPosition = event.localPosition;
         setState(() {
-          _translation = _getDirectionOffset(offset, size);
+          _mousePosition = null; // 離開時隱藏
+          _translation = _getDirectionOffset(mouseEnterPosition, size);
           _opacity = 0.0;
+        });
+        Future.delayed(const Duration(milliseconds: 300), () {
+          if (mounted) {
+            setState(() {
+              _translation = Offset.zero;
+            });
+          }
         });
       },
       child: Stack(
@@ -46,7 +57,6 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
           Positioned.fill(
             child: Image.asset(widget.photo.coverImagePath, fit: BoxFit.cover),
           ),
-          // 黑色遮罩
           Positioned.fill(
             child: ClipRect(
               child: AnimatedOpacity(
@@ -73,18 +83,25 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
     );
   }
 
-  Offset _getDirectionOffset(Offset pos, Size size) {
-    final x = pos.dx;
-    final y = pos.dy;
-    final width = size.width;
-    final height = size.height;
+  Offset _getDirectionOffset(Offset position, Size size) {
+    final w = size.width;
+    final h = size.height;
+    final dx = position.dx - w / 2; //滑鼠相對於中心點的距離
+    final dy = position.dy - h / 2;
 
-    if (x < width * 0.25) return const Offset(-1, 0); // left
-    if (x > width * 0.75) return const Offset(1, 0); // right
-    if (y < height * 0.25) return const Offset(0, -1); // top
-    if (y > height * 0.75) return const Offset(0, 1); // bottom
+    final slope1 = h / w;
+    final slope2 = -h / w;
 
-    return const Offset(0, 1); // default from bottom
+    if (dy >= slope1 * dx && dy <= slope2 * dx) {
+      return const Offset(-1, 0); // left   -1,0
+    } else if (dy >= slope1 * dx && dy >= slope2 * dx) {
+      return const Offset(0, 1); // button     0,1
+    } else if (dy <= slope1 * dx && dy >= slope2 * dx) {
+      return const Offset(1, 0); // right     1,0
+    } else if (dy <= slope1 * dx && dy <= slope2 * dx) {
+      return const Offset(0, -1); // top   0,-1
+    }
+    return const Offset(0, 0);
   }
 }
 
