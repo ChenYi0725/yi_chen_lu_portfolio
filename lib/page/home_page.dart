@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage> {
     final image = homePagePhotoList[_currentIndex];
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: themeColor,
       body: Stack(
         children: [
           Positioned.fill(
