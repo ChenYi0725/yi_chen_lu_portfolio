@@ -39,4 +39,8 @@ flutter:
     - assets/images/dance/roaming_dream/
     - assets/images/dance/sword_tells/
     - assets/images/dance/the_rhythm_of_ink/
+  fonts:
+    - family: Fustat
+      fonts:
+        - asset: assets/font/Fustat-VariableFont_wght.ttf
 

@@ -3,7 +3,7 @@ import 'package:yi_chen_lu_protfolio/model/resume_program.dart';
 List<ResumeProgram> resumeProgramItems = [
   ResumeProgram(
     programName: '2025 Breaking Boundaries – The Rhythm of Ink 墨韻',
-    directorName: 'Yi-Ning Ciou',
+    directorsName: ['Yi-Ning Ciou'],
     // performanceAddress: '',
     performanceVenues:
         'Dance Department Black Box Theater, Room 501, NTUA\nNTUA Performing Arts Center',
@@ -12,7 +12,12 @@ List<ResumeProgram> resumeProgramItems = [
   ),
   ResumeProgram(
     programName: '2024 Independent Life 獨立活體',
-    directorName: 'Jhen-Wei Sia, Guan-Ying Guo, Sih-Han Ciao, ​​Yi-Jie Cao',
+    directorsName: [
+      'Jhen-Wei Sia',
+      'Guan-Ying Guo',
+      'Sih-Han Chiao',
+      'Yi-Jie Cao',
+    ],
     // performanceAddress:
     //     'Dance Department Black Box Theater, Room 501, General Building, NTUA',
     performanceVenues:
@@ -22,7 +27,7 @@ List<ResumeProgram> resumeProgramItems = [
   ),
   ResumeProgram(
     programName: '2024 Cries and Whispers 呼喊與耳語',
-    directorName: 'You-Syuan Chen',
+    directorsName: ['You-Syuan Chen'],
     performanceVenues: 'NTUA Experimental Theatre',
     // performanceAddress: '',
     performanceLocation: 'New Taipei City, Taiwan',

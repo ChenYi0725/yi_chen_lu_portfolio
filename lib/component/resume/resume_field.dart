@@ -40,7 +40,18 @@ class ResumeField extends StatelessWidget {
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.all(8),
-                child: Text(resumeProgram.directorName, style: resumeTextStyle),
+                child: Wrap(
+                  children: List.generate(resumeProgram.directorsName.length, (
+                    index,
+                  ) {
+                    String name = resumeProgram.directorsName[index];
+                    String display =
+                        (index != resumeProgram.directorsName.length - 1)
+                        ? "$name, "
+                        : name;
+                    return Text(display, style: resumeTextStyle);
+                  }),
+                ),
               ),
             ),
             Expanded(
@@ -77,10 +88,7 @@ class ResumeField extends StatelessWidget {
                     ),
                     color: Colors.white,
                     child: Center(
-                      child: Text(
-                        "View Project",
-                        style: TextStyle(color: Colors.black87),
-                      ),
+                      child: Text("View Project", style: resumeRedirectStyle),
                     ),
                   ),
                 ),

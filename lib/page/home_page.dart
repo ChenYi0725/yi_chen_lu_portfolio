@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yi_chen_lu_protfolio/page/theatre_page.dart';
 
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'YICHEN LU',
+                  'YICHEN  LU',
                   style: homePageNameStyle,
                   textAlign: TextAlign.left,
                 ),
@@ -90,16 +91,13 @@ class _HomePageState extends State<HomePage> {
                       // borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      'Explore',
+                      'EXPLORE',
                       style: homePageEnterStyle,
                       textAlign: TextAlign.center,
                     ),
                   ),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => TheatrePage()),
-                    );
+                    context.go('/theatre');
                   },
                 ),
               ],

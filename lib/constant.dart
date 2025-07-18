@@ -2,74 +2,94 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 double photoDetailHeight = 450;
+double resumePadding = 30;
 
 Color themeColor = Colors.black87;
 // animated photo
-TextStyle animatedPhotoStyle = GoogleFonts.firaSans(
+TextStyle animatedPhotoStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 36,
 );
 
 // contact and about
-TextStyle contactTextStyle = GoogleFonts.montserrat(
+TextStyle contactTextStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 20,
 );
-TextStyle aboutTextStyle = GoogleFonts.montserrat(
+TextStyle aboutTextStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 20,
 );
 //detail
-TextStyle photoDetailTitleStyle = GoogleFonts.firaSans(
+TextStyle photoDetailTitleStyle = GoogleFonts.reemKufi(
   color: Colors.white,
   fontSize: 48,
   fontWeight: FontWeight.bold,
 );
 
-TextStyle photoDetailContentStyle = GoogleFonts.firaSans(
+TextStyle photoDetailContentStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.grey,
   fontSize: 18,
 );
 
 //resume
-TextStyle resumeTitleTextStyle = GoogleFonts.openSans(
+TextStyle resumeTitleTextStyle = GoogleFonts.reemKufi(
   color: Colors.white,
   fontSize: 32,
   fontWeight: FontWeight.bold,
 );
-TextStyle resumeTextStyle = GoogleFonts.openSans(
+TextStyle resumeTextStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 14,
 );
-TextStyle resumePureTextStyle = GoogleFonts.openSans(
+TextStyle resumePureTextStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 20,
 );
-//header bar
-TextStyle headerBarTextStyle = GoogleFonts.montserrat(
-  textStyle: TextStyle(color: Colors.grey[300], fontSize: 16),
+TextStyle resumeRedirectStyle = const TextStyle(
+  fontFamily: 'Fustat',
+  color: Colors.black87,
 );
-// TextStyle headerBarTextStyle = TextStyle(color: Colors.grey[300], fontSize: 16);
-TextStyle headerBarNameStyle = GoogleFonts.montserrat(
+//header bar
+TextStyle headerBarTextStyle = TextStyle(
+  fontFamily: 'Fustat',
+  color: Colors.grey[300],
+
+  fontSize: 16,
+);
+TextStyle headerBarNameStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontWeight: FontWeight.bold,
   fontSize: 24,
 );
+TextStyle headerBarTitleStyle = const TextStyle(
+  fontFamily: 'Fustat',
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+  fontSize: 12,
+);
 // home page
-TextStyle homePageNameStyle = GoogleFonts.ptSans(
+TextStyle homePageNameStyle = GoogleFonts.reemKufi(
   color: Colors.white,
   fontSize: 50,
   fontWeight: FontWeight.bold,
 );
-TextStyle homePageEnterStyle = GoogleFonts.ptSans(
+TextStyle homePageEnterStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 10,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w400,
 );
-TextStyle homePageCareerStyle = GoogleFonts.ptSans(
+TextStyle homePageCareerStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 16,
-  // fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w400,
 );
-
-double resumePadding = 30;

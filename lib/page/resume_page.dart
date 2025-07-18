@@ -29,7 +29,7 @@ class ResumePage extends StatelessWidget {
               title: 'MASTER ELETRICTIAN',
               items: resumeElectrician,
             ),
-            ResumeSection(title: 'Education', items: resumeEducation),
+            ResumeSection(title: 'EDUCATION', items: resumeEducation),
           ],
         ),
       ),

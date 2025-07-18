@@ -53,26 +53,27 @@ final List<Photo> theatrePhoto = [
 
 final List<Photo> dancePhoto = [
   Photo(
-    coverImagePath: 'assets/images/dance/areca_nuts/areca nuts (1).webp',
+    coverImagePath: 'assets/images/dance/areca_nuts/areca nuts (4).webp',
     title: 'Areca Nuts',
     photoDetail:
         'Choreographer: Jhen-Wei Sia\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
+      'assets/images/dance/areca_nuts/areca nuts (4).webp',
       'assets/images/dance/areca_nuts/areca nuts (1).webp',
       'assets/images/dance/areca_nuts/areca nuts (2).webp',
       'assets/images/dance/areca_nuts/areca nuts (3).webp',
-      'assets/images/dance/areca_nuts/areca nuts (4).webp',
     ],
   ),
   Photo(
     coverImagePath:
-        'assets/images/dance/my_name_is_shi/my name is shi (1).webp',
+        'assets/images/dance/my_name_is_shi/my name is shi (2).webp',
     title: 'My name is Shi',
     photoDetail:
         'Choreographer: Jhen-Wei Sia\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
-      'assets/images/dance/my_name_is_shi/my name is shi (1).webp',
       'assets/images/dance/my_name_is_shi/my name is shi (2).webp',
+      'assets/images/dance/my_name_is_shi/my name is shi (1).webp',
+
       'assets/images/dance/my_name_is_shi/my name is shi (3).webp',
       'assets/images/dance/my_name_is_shi/my name is shi (4).webp',
     ],
@@ -101,15 +102,16 @@ final List<Photo> dancePhoto = [
     ],
   ),
   Photo(
-    coverImagePath: 'assets/images/dance/sword_tells/sword tells (1).webp',
-    title: 'Sword Tells',
+    coverImagePath: 'assets/images/dance/sword_tells/sword tells (4).webp',
+    title: 'To the Sword',
     photoDetail:
-        'Choreographer: Sih-Han Ciao\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
+        'Choreographer: Sih-Han Chiao\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
+      'assets/images/dance/sword_tells/sword tells (4).webp',
       'assets/images/dance/sword_tells/sword tells (1).webp',
       'assets/images/dance/sword_tells/sword tells (2).webp',
       'assets/images/dance/sword_tells/sword tells (3).webp',
-      'assets/images/dance/sword_tells/sword tells (4).webp',
+
       'assets/images/dance/sword_tells/sword tells (5).webp',
       'assets/images/dance/sword_tells/sword tells (6).webp',
       'assets/images/dance/sword_tells/sword tells (7).webp',

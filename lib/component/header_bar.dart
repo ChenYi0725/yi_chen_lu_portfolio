@@ -39,9 +39,19 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
                       fit: FlexFit.loose,
                       child: InkWell(
                         onTap: () => context.go('/'),
-                        child: Text(
-                          'YI CHEN LU',
-                          style: headerBarNameStyle,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'YI CHEN LU ',
+                                style: headerBarNameStyle,
+                              ),
+                              TextSpan(
+                                text: 'LIGHTING DESIGNER',
+                                style: headerBarTitleStyle,
+                              ),
+                            ],
+                          ),
                           overflow: TextOverflow.ellipsis,
                           softWrap: false,
                         ),
@@ -50,7 +60,6 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
 
                     // 導覽列
                     Wrap(
-                      // ✅ 使用 Wrap 解決項目 overflow 的問題
                       spacing: 24,
                       children: navItems.map((item) {
                         final isSelected = currentRoute == item['route'];
