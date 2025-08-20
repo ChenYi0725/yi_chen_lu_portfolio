@@ -108,12 +108,12 @@ final List<Photo> dancePhoto = [
         'Choreographer: Sih-Han Chiao\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/sword_tells/sword tells (4).webp',
-      'assets/images/dance/sword_tells/sword tells (1).webp',
+      // 'assets/images/dance/sword_tells/sword tells (1).webp',
       'assets/images/dance/sword_tells/sword tells (2).webp',
       'assets/images/dance/sword_tells/sword tells (3).webp',
 
       'assets/images/dance/sword_tells/sword tells (5).webp',
-      'assets/images/dance/sword_tells/sword tells (6).webp',
+      // 'assets/images/dance/sword_tells/sword tells (6).webp',
       'assets/images/dance/sword_tells/sword tells (7).webp',
     ],
   ),
@@ -129,5 +129,5 @@ final List<Photo> dancePhoto = [
   ),
 ];
 
-String aboutPhoto = 'assets/images/cover/cover (3).webp';
-String contactPhoto = 'assets/images/cover/cover (3).webp';
+String aboutPhoto = 'assets/images/about.webp';
+// String contactPhoto = 'assets/images/cover/cover (3).webp';

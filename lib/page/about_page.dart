@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yi_chen_lu_protfolio/photo_list.dart';
-import 'package:yi_chen_lu_protfolio/string_content.dart';
-import '../component/auto_resizing_text.dart';
+import 'package:provider/provider.dart';
+import 'package:yi_chen_lu_protfolio/repository/image_content_repository.dart';
+import 'package:yi_chen_lu_protfolio/repository/string_content_repository.dart';
 import '../component/header_bar.dart';
 import '../constant.dart';
 
@@ -11,6 +11,18 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final repo = Provider.of<StringContentRepository>(context);
+    final imageRepo = Provider.of<ImageContentRepository>(context);
+
+    if (!repo.loaded) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+    if (!imageRepo.loaded) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
+    final contentList = repo.getPageContent('about');
+
     return Scaffold(
       appBar: HeaderBar(
         currentRoute: '/about',
@@ -25,15 +37,19 @@ class AboutPage extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8),
-                child: Image.asset(aboutPhoto),
+                child: Image.network(
+                  imageRepo.getImage('about'),
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
-
             Flexible(
               fit: FlexFit.loose,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(aboutPageContent, style: aboutTextStyle),
+                child: SingleChildScrollView(
+                  child: Text(contentList.join('\n'), style: aboutTextStyle),
+                ),
               ),
             ),
           ],

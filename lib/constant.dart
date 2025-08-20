@@ -9,7 +9,7 @@ Color themeColor = Colors.black87;
 TextStyle animatedPhotoStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
-  fontSize: 36,
+  fontSize: 24,
 );
 
 // contact and about
@@ -24,10 +24,11 @@ TextStyle aboutTextStyle = const TextStyle(
   fontSize: 20,
 );
 //detail
-TextStyle photoDetailTitleStyle = GoogleFonts.reemKufi(
+TextStyle photoDetailTitleStyle = const TextStyle(
+  fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 48,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w700,
 );
 
 TextStyle photoDetailContentStyle = const TextStyle(
@@ -50,7 +51,7 @@ TextStyle resumeTextStyle = const TextStyle(
 TextStyle resumePureTextStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
-  fontSize: 20,
+  fontSize: 14,
 );
 TextStyle resumeRedirectStyle = const TextStyle(
   fontFamily: 'Fustat',
@@ -63,8 +64,7 @@ TextStyle headerBarTextStyle = TextStyle(
 
   fontSize: 16,
 );
-TextStyle headerBarNameStyle = const TextStyle(
-  fontFamily: 'Fustat',
+TextStyle headerBarNameStyle = GoogleFonts.reemKufi(
   color: Colors.white,
   fontWeight: FontWeight.bold,
   fontSize: 24,
@@ -72,7 +72,7 @@ TextStyle headerBarNameStyle = const TextStyle(
 TextStyle headerBarTitleStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w700,
   fontSize: 12,
 );
 // home page
@@ -85,11 +85,11 @@ TextStyle homePageEnterStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 10,
-  fontWeight: FontWeight.w400,
+  // fontWeight: FontWeight.w400,
 );
 TextStyle homePageCareerStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 16,
-  fontWeight: FontWeight.w400,
+  // fontWeight: FontWeight.w700,
 );

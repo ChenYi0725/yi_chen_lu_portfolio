@@ -8,8 +8,13 @@ import '../../controller/photo_expansion_controller.dart';
 import '../../model/photo_model.dart';
 
 class Gallery extends StatefulWidget {
-  const Gallery({super.key, required this.photoList});
+  const Gallery({
+    super.key,
+    required this.photoList,
+    required this.initialExpandIndex,
+  });
   final List<Photo> photoList;
+  final int? initialExpandIndex;
   @override
   _GalleryState createState() => _GalleryState();
 }
@@ -24,6 +29,15 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
     _controller.addListener(() {
       if (mounted) setState(() {});
     });
+    if (widget.initialExpandIndex != null) {
+      print(widget.initialExpandIndex);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _controller.toggle(
+          index: widget.initialExpandIndex!,
+          row: widget.initialExpandIndex! ~/ 3 * 3,
+        );
+      });
+    }
   }
 
   @override

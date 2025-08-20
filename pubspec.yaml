@@ -17,6 +17,8 @@ dependencies:
   google_fonts: ^6.2.1
   go_router: ^14.1.4
   url_launcher: ^6.3.1
+  http: ^1.5.0
+  csv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -26,11 +28,9 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
-
-
   uses-material-design: true
   assets:
-#    - assets/images/
+    - assets/images/
     - assets/images/cover/
     - assets/images/theatre/cries_and_whispers/
     - assets/images/dance/areca_nuts/
@@ -39,8 +39,14 @@ flutter:
     - assets/images/dance/roaming_dream/
     - assets/images/dance/sword_tells/
     - assets/images/dance/the_rhythm_of_ink/
+
   fonts:
     - family: Fustat
       fonts:
-        - asset: assets/font/Fustat-VariableFont_wght.ttf
+#        - asset: assets/font/Fustat-VariableFont_wght.ttf
+        - asset: assets/font/Fustat-Regular.ttf
+        - asset: assets/font/Fustat-Bold.ttf
+          weight: 700
+        - asset: assets/font/Fustat-Light.ttf
+          weight: 300
 

@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _startAutoFade() {
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
       setState(() {
         _currentIndex = (_currentIndex + 1) % homePagePhotoList.length;
       });

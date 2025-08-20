@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yi_chen_lu_protfolio/model/resume_program.dart';
 import '../../constant.dart';
-import '../../controller/resume_provider.dart';
+import '../../provider/resume_provider.dart';
 
 class ResumeField extends StatelessWidget {
   const ResumeField({super.key, required this.resumeProgram});
@@ -80,7 +81,9 @@ class ResumeField extends StatelessWidget {
               child: Opacity(
                 opacity: hover ? 1.0 : 0.0,
                 child: InkWell(
-                  onTap: () => _launchUrl(resumeProgram.programLink),
+                  onTap: () => resumeProgram.isOutsideUrl
+                      ? _launchUrl(resumeProgram.programLink)
+                      : context.go(resumeProgram.programLink),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,

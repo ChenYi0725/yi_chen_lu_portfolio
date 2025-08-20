@@ -8,7 +8,8 @@ List<ResumeProgram> resumeProgramItems = [
     performanceVenues:
         'Dance Department Black Box Theater, Room 501, NTUA\nNTUA Performing Arts Center',
     performanceLocation: 'New Taipei City, Taiwan',
-    programLink: 'https://www.google.com/search?q=The Rhythm of Ink',
+    programLink: '/dance?expandIndex=5',
+    isOutsideUrl: false,
   ),
   ResumeProgram(
     programName: '2024 Independent Life 獨立活體',
@@ -23,7 +24,8 @@ List<ResumeProgram> resumeProgramItems = [
     performanceVenues:
         'Dance Department Black Box Theater, Room 501, General Building, NTUA\nNTUA Performing Arts Center',
     performanceLocation: 'New Taipei City, Taiwan',
-    programLink: 'https://www.google.com/search?q=Independent Life',
+    programLink: '/dance?expandIndex=2',
+    isOutsideUrl: false,
   ),
   ResumeProgram(
     programName: '2024 Cries and Whispers 呼喊與耳語',
@@ -31,11 +33,20 @@ List<ResumeProgram> resumeProgramItems = [
     performanceVenues: 'NTUA Experimental Theatre',
     // performanceAddress: '',
     performanceLocation: 'New Taipei City, Taiwan',
-    programLink: 'https://www.google.com/search?q=Cries and Whispers',
+    programLink: '/theatre?expandIndex=0',
+    isOutsideUrl: false,
   ),
 ];
-List<String> resumeElectrician = [
-  '2023 Psychoverse \nDepartment of Drama, NTUA \nNTUA Experimental Theatre \nNew Taipei City, Taiwan',
+// List<String> resumeElectrician = [
+//   '2023 Psychoverse \nDepartment of Drama, NTUA \nNTUA Experimental Theatre \nNew Taipei City, Taiwan',
+// ];
+List<List<String>> resumeElectrician = [
+  [
+    '2023 Psychoverse',
+    'Department of Drama, NTUA',
+    'NTUA Experimental Theatre',
+    'New Taipei City, Taiwan',
+  ],
 ];
 List<String> resumeEducation = [
   'Master of Fine Arts \nUniversity of Maryland \nAug 2025 – Present',

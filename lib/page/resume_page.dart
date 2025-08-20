@@ -22,14 +22,22 @@ class ResumePage extends StatelessWidget {
         child: Column(
           children: [
             ResumeSection(
-              title: 'LIGHTING DESIGNER',
+              title: 'LIGHTING  DESIGNER',
               items: resumeProgramItems,
+              type: ResumeSectionType.programs,
             ),
+            //---
             ResumeSection(
-              title: 'MASTER ELETRICTIAN',
+              title: 'MASTER  ELETRICTIAN',
               items: resumeElectrician,
+              type: ResumeSectionType.masterElectrician,
             ),
-            ResumeSection(title: 'EDUCATION', items: resumeEducation),
+            //---
+            ResumeSection(
+              title: 'EDUCATION',
+              items: resumeEducation,
+              type: ResumeSectionType.plainText,
+            ),
           ],
         ),
       ),

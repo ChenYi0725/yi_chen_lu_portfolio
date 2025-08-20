@@ -5,6 +5,7 @@ class ResumeProgram {
   // final String performanceAddress;
   final String performanceLocation;
   final String programLink;
+  final bool isOutsideUrl;
   ResumeProgram({
     required this.programName,
     required this.directorsName,
@@ -12,6 +13,7 @@ class ResumeProgram {
     // required this.performanceAddress,
     required this.performanceLocation,
     required this.programLink,
+    required this.isOutsideUrl,
   });
 }
 

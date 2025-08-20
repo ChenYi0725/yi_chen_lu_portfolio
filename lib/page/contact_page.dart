@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yi_chen_lu_protfolio/photo_list.dart';
+import 'package:provider/provider.dart';
 import '../component/header_bar.dart';
 import '../constant.dart';
-import '../string_content.dart';
+import '../repository/string_content_repository.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final repo = Provider.of<StringContentRepository>(context);
+
+    if (!repo.loaded) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
+    final contentList = repo.getPageContent('contact');
     return Scaffold(
       appBar: HeaderBar(
         currentRoute: '/contact',
@@ -19,26 +26,12 @@ class ContactPage extends StatelessWidget {
       ),
       backgroundColor: themeColor,
       body: Center(
-        child: Row(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Image.asset(contactPhoto),
-              ),
-            ),
-
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.topLeft,
-                  child: Text(contactPageContent, style: contactTextStyle),
-                ),
-              ),
-            ),
-          ],
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.topLeft,
+          child: SingleChildScrollView(
+            child: Text(contentList.join('\n'), style: contactTextStyle),
+          ),
         ),
       ),
     );

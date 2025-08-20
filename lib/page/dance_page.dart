@@ -11,6 +11,12 @@ class DancePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final expandIndexStr = GoRouterState.of(
+      context,
+    ).uri.queryParameters['expandIndex'];
+    final expandIndex = expandIndexStr != null
+        ? int.tryParse(expandIndexStr)
+        : null; //get index
     return Scaffold(
       backgroundColor: themeColor,
       appBar: HeaderBar(
@@ -20,7 +26,11 @@ class DancePage extends StatelessWidget {
         },
       ),
       body: SingleChildScrollView(
-        child: Column(children: [Gallery(photoList: dancePhoto)]),
+        child: Column(
+          children: [
+            Gallery(photoList: dancePhoto, initialExpandIndex: expandIndex),
+          ],
+        ),
       ),
     );
   }
