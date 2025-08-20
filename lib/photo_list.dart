@@ -129,5 +129,5 @@ final List<Photo> dancePhoto = [
   ),
 ];
 
-String aboutPhoto = 'assets/images/about.webp';
+// String aboutPhoto = 'assets/images/about.webp';
 // String contactPhoto = 'assets/images/cover/cover (3).webp';

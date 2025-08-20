@@ -8,7 +8,7 @@ import 'package:yi_chen_lu_protfolio/page/theatre_page.dart';
 
 final GoRouter router = GoRouter(
   routes: [
-    GoRoute(path: '/', builder: (context, state) => HomePage()),
+    GoRoute(path: '/', builder: (context, state) => HomePageWrapper()),
     GoRoute(path: '/theatre', builder: (context, state) => TheatrePage()),
     GoRoute(path: '/about', builder: (context, state) => AboutPage()),
     GoRoute(path: '/resume', builder: (context, state) => ResumePage()),

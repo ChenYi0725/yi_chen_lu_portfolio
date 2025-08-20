@@ -16,6 +16,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: MaterialApp.router(
+        theme: ThemeData(
+          primarySwatch: Colors.grey,
+          scaffoldBackgroundColor: Colors.grey,
+          progressIndicatorTheme: ProgressIndicatorThemeData(
+            color: Colors.black,
+          ),
+        ),
         debugShowCheckedModeBanner: false,
         routerConfig: router,
         title: "protfolio",
