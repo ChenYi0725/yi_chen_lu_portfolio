@@ -1,109 +1,98 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:yi_chen_lu_protfolio/page/theatre_page.dart';
-
+import 'package:provider/provider.dart';
 import '../constant.dart';
-import '../photo_list.dart';
+import '../provider/cover_provider.dart';
+import '../url.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _startAutoFade();
-  }
-
-  void _startAutoFade() {
-    _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
-      setState(() {
-        _currentIndex = (_currentIndex + 1) % homePagePhotoList.length;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final image = homePagePhotoList[_currentIndex];
-    double screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: themeColor,
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: AnimatedSwitcher(
-              duration: const Duration(seconds: 1),
-              switchInCurve: Curves.easeIn,
-              switchOutCurve: Curves.easeOut,
-              child: Image.asset(
-                image,
-                key: ValueKey(image),
-                width: double.infinity,
-                height: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+    return ChangeNotifierProvider(
+      create: (_) => CoverProvider()..fetchPhotos(coverUrl),
+      child: Consumer<CoverProvider>(
+        builder: (context, provider, child) {
+          final photos = provider.photoUrls;
+          if (photos.isEmpty) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
 
-          Positioned(
-            top: screenWidth * 0.03,
-            left: screenWidth * 0.05,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          final imageUrl = photos[provider.currentIndex];
+          final screenWidth = MediaQuery.of(context).size.width;
+
+          return Scaffold(
+            backgroundColor: themeColor,
+            body: Stack(
               children: [
-                Text(
-                  'YICHEN  LU',
-                  style: homePageNameStyle,
-                  textAlign: TextAlign.left,
-                ),
-                const SizedBox(height: 18),
-                Text(
-                  'LIGHTING DESIGN',
-                  style: homePageCareerStyle,
-                  textAlign: TextAlign.left,
-                ),
-                const SizedBox(height: 30),
-                GestureDetector(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.0),
-                      border: Border.all(color: Colors.white, width: 2),
-                      // borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      'EXPLORE',
-                      style: homePageEnterStyle,
-                      textAlign: TextAlign.center,
+                Positioned.fill(
+                  child: AnimatedSwitcher(
+                    duration: const Duration(seconds: 1),
+                    switchInCurve: Curves.easeIn,
+                    switchOutCurve: Curves.easeOut,
+                    child: Image.network(
+                      imageUrl,
+                      key: ValueKey(imageUrl),
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: Colors.black12,
+                        child: const Icon(
+                          Icons.broken_image,
+                          size: 80,
+                          color: Colors.red,
+                        ),
+                      ),
                     ),
                   ),
-                  onTap: () {
-                    context.go('/theatre');
-                  },
+                ),
+                Positioned(
+                  top: screenWidth * 0.03,
+                  left: screenWidth * 0.05,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'YICHEN  LU',
+                        style: homePageNameStyle,
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(height: 18),
+                      Text(
+                        'LIGHTING DESIGN',
+                        style: homePageCareerStyle,
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(height: 30),
+                      GestureDetector(
+                        onTap: () => context.go('/theatre'),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.0),
+                            border: Border.all(color: Colors.white, width: 2),
+                          ),
+                          child: Text(
+                            'EXPLORE',
+                            style: homePageEnterStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
