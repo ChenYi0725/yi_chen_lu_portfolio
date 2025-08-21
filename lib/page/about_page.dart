@@ -16,12 +16,6 @@ class AboutPage extends StatelessWidget {
           ContactAndAboutProvider(sheetCsvUrl: aboutAndContactUrl)..loadData(),
       child: Consumer<ContactAndAboutProvider>(
         builder: (context, provider, child) {
-          if (!provider.loaded) {
-            return const Scaffold(
-              body: Center(child: CircularProgressIndicator()),
-            );
-          }
-
           return Scaffold(
             appBar: HeaderBar(
               currentRoute: '/about',
@@ -30,27 +24,32 @@ class AboutPage extends StatelessWidget {
               },
             ),
             backgroundColor: themeColor,
-            body: Center(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Image.network(provider.aboutImageUrl),
+            body: (!provider.loaded)
+                ? Center(child: CircularProgressIndicator())
+                : Center(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Image.network(provider.aboutImageUrl),
+                          ),
+                        ),
+                        Flexible(
+                          fit: FlexFit.loose,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SingleChildScrollView(
+                              child: Text(
+                                provider.aboutText,
+                                style: aboutTextStyle,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Flexible(
-                    fit: FlexFit.loose,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SingleChildScrollView(
-                        child: Text(provider.aboutText, style: aboutTextStyle),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
           );
         },
       ),

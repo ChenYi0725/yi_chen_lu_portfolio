@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.grey,
           scaffoldBackgroundColor: Colors.grey,
           progressIndicatorTheme: ProgressIndicatorThemeData(
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         debugShowCheckedModeBanner: false,

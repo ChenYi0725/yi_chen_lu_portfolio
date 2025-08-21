@@ -17,12 +17,6 @@ class ContactPage extends StatelessWidget {
           ContactAndAboutProvider(sheetCsvUrl: aboutAndContactUrl)..loadData(),
       child: Consumer<ContactAndAboutProvider>(
         builder: (context, provider, child) {
-          if (!provider.loaded) {
-            return const Scaffold(
-              body: Center(child: CircularProgressIndicator()),
-            );
-          }
-
           return Scaffold(
             appBar: HeaderBar(
               currentRoute: '/contact',
@@ -31,15 +25,20 @@ class ContactPage extends StatelessWidget {
               },
             ),
             backgroundColor: themeColor,
-            body: Center(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                alignment: Alignment.topLeft,
-                child: SingleChildScrollView(
-                  child: Text(provider.contactText, style: contactTextStyle),
-                ),
-              ),
-            ),
+            body: (!provider.loaded)
+                ? Center(child: CircularProgressIndicator())
+                : Center(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.topLeft,
+                      child: SingleChildScrollView(
+                        child: Text(
+                          provider.contactText,
+                          style: contactTextStyle,
+                        ),
+                      ),
+                    ),
+                  ),
           );
         },
       ),

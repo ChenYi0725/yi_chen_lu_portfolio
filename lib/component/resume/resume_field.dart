@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yi_chen_lu_protfolio/model/resume_program.dart';
+import 'package:yi_chen_lu_protfolio/provider/resume_field_provider.dart';
 import '../../constant.dart';
 import '../../provider/resume_provider.dart';
 
@@ -19,11 +20,11 @@ class ResumeField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hover = context.watch<HoverProvider>().isHovering;
+    final hover = context.watch<ResumeFieldProvider>().isHovering;
 
     return MouseRegion(
-      onEnter: (_) => context.read<HoverProvider>().setHover(true),
-      onExit: (_) => context.read<HoverProvider>().setHover(false),
+      onEnter: (_) => context.read<ResumeFieldProvider>().setHover(true),
+      onExit: (_) => context.read<ResumeFieldProvider>().setHover(false),
       cursor: SystemMouseCursors.click,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class CoverProvider extends ChangeNotifier {
   List<String> _photoUrls = [];
-  List<Widget> _photos = [];
+  final List<Widget> _photos = [];
   List<String> get photoUrls => _photoUrls;
   List<Widget> get photos => _photos;
 
@@ -21,10 +21,7 @@ class CoverProvider extends ChangeNotifier {
 
         for (var url in _photoUrls) {
           final image = Image.network(url, fit: BoxFit.cover);
-
-          // 先快取圖片，確保第一次顯示不卡頓
           precacheImage(image.image, context);
-
           _photos.add(image);
         }
 

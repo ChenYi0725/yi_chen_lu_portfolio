@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yi_chen_lu_protfolio/component/resume/resume_field.dart';
+import 'package:yi_chen_lu_protfolio/provider/resume_field_provider.dart';
 import '../../constant.dart';
-import '../../provider/resume_provider.dart';
+import '../../enum.dart';
 import '../../model/resume_program.dart';
-
-enum ResumeSectionType { programs, masterElectrician, plainText }
 
 class ResumeSection<T> extends StatelessWidget {
   const ResumeSection({
@@ -17,7 +16,7 @@ class ResumeSection<T> extends StatelessWidget {
 
   final String title;
   final List<T> items;
-  final ResumeSectionType type;
+  final ResumePart type;
 
   @override
   Widget build(BuildContext context) {
@@ -34,53 +33,37 @@ class ResumeSection<T> extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: resumePadding),
           child: Column(
-            children: List.generate(items.length * 2 - 1, (index) {
-              if (index.isEven) {
-                final item = items[index ~/ 2];
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (type == ResumePart.masterElectrician)
+                ...(items as List<String>).map(
+                  (text) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(text, style: resumePureTextStyle),
+                  ),
+                ),
 
-                if (type == ResumeSectionType.masterElectrician) {
-                  final List<List<String>> rows = items as List<List<String>>;
+              if (type == ResumePart.lightingDesign)
+                ...(items as List<ResumeProgram>).map(
+                  (item) => Column(
+                    children: [
+                      ChangeNotifierProvider(
+                        create: (_) => ResumeFieldProvider(),
+                        child: ResumeField(resumeProgram: item),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
 
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: rows.map((row) {
-                      return Row(
-                        children: [
-                          ...row.map(
-                            (text) => Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8),
-                                child: Text(text, style: resumePureTextStyle),
-                              ),
-                            ),
-                          ),
-                          const Expanded(flex: 1, child: SizedBox()), // 結尾留白空間
-                        ],
-                      );
-                    }).toList(),
-                  );
-                } else if (type == ResumeSectionType.programs) {
-                  if (item is ResumeProgram) {
-                    return ChangeNotifierProvider(
-                      create: (_) => HoverProvider(),
-                      child: ResumeField(resumeProgram: item),
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                } else if (type == ResumeSectionType.plainText) {
-                  return Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(item.toString(), style: resumePureTextStyle),
-                  );
-                } else {
-                  return const SizedBox.shrink(); // fallback
-                }
-              } else {
-                return const SizedBox(height: 20);
-              }
-            }),
+              if (type == ResumePart.education)
+                ...(items as List<String>).map(
+                  (text) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(text, style: resumePureTextStyle),
+                  ),
+                ),
+            ],
           ),
         ),
         const SizedBox(height: 20),

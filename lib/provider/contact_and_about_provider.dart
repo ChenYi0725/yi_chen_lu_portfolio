@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:csv/csv.dart';
 
 class ContactAndAboutProvider extends ChangeNotifier {
-  final String sheetCsvUrl; // Google Sheet 公開 CSV 連結
+  final String sheetCsvUrl;
   bool loaded = false;
 
   String aboutText = '';
