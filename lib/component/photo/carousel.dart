@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constant.dart';
 import '../../controller/carousel_controller.dart';
-import 'dart:math';
-
 import 'carousel_thumbnail.dart';
 
 class Carousel extends StatelessWidget {
@@ -75,10 +73,7 @@ class Carousel extends StatelessWidget {
                       child: GestureDetector(
                         behavior: HitTestBehavior.translucent,
                         onTap: provider.goToPrevious,
-                        child: SizedBox(
-                          width: arrowTapArea,
-                          // child: Icon(Icons.arrow_left, size: arrowSize),
-                        ),
+                        child: SizedBox(width: arrowTapArea),
                       ),
                     ),
                     Positioned(
@@ -88,10 +83,7 @@ class Carousel extends StatelessWidget {
                       child: GestureDetector(
                         behavior: HitTestBehavior.translucent,
                         onTap: provider.goToNext,
-                        child: SizedBox(
-                          width: arrowTapArea,
-                          // child: Icon(Icons.arrow_right, size: arrowSize),
-                        ),
+                        child: SizedBox(width: arrowTapArea),
                       ),
                     ),
                   ],

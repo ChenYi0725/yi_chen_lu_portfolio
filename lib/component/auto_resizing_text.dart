@@ -17,7 +17,6 @@ class AutoResizingText extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         double fontSize = style.fontSize ?? 14;
-        double maxFontSize = 100;
 
         while (fontSize > 8) {
           final textPainter = TextPainter(

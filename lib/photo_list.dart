@@ -33,10 +33,29 @@ import 'model/photo_model.dart';
 
 final List<Photo> theatrePhoto = [
   Photo(
+    coverImagePath: 'https://files.catbox.moe/i747ww.webp',
+    title: 'Cries and Whispers',
+    description:
+        'Director: You-Syuan Chen\nScenic Design: Yu-Ci Wang\nCostume Design: Jie-Rong Sia\nSound Design: Fang-Syuan Kang\nPhotographer: Yun-Cian Huang',
+    contentImages: [
+      'https://files.catbox.moe/i747ww.webp',
+      'https://files.catbox.moe/zhmrr8.webp',
+      'https://files.catbox.moe/ujkmt0.webp',
+      'https://files.catbox.moe/sz9kz0.webp',
+      'https://files.catbox.moe/sii0b0.webp',
+      'https://files.catbox.moe/5spumh.webp',
+      'https://files.catbox.moe/pd5y5i.webp',
+      'https://files.catbox.moe/ob58rs.webp',
+    ],
+  ),
+];
+
+final List<Photo> theatrePhoto = [
+  Photo(
     coverImagePath:
         'assets/images/theatre/cries_and_whispers/cries and whispers (1).webp',
     title: 'Cries and Whispers',
-    photoDetail:
+    description:
         'Director: You-Syuan Chen\nScenic Design: Yu-Ci Wang\nCostume Design: Jie-Rong Sia\nSound Design: Fang-Syuan Kang\nPhotographer: Yun-Cian Huang',
     contentImages: [
       'assets/images/theatre/cries_and_whispers/cries and whispers (1).webp',
@@ -55,7 +74,7 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/dance/areca_nuts/areca nuts (4).webp',
     title: 'Areca Nuts',
-    photoDetail:
+    description:
         'Choreographer: Jhen-Wei Sia\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/areca_nuts/areca nuts (4).webp',
@@ -68,7 +87,7 @@ final List<Photo> dancePhoto = [
     coverImagePath:
         'assets/images/dance/my_name_is_shi/my name is shi (2).webp',
     title: 'My name is Shi',
-    photoDetail:
+    description:
         'Choreographer: Jhen-Wei Sia\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/my_name_is_shi/my name is shi (2).webp',
@@ -81,7 +100,7 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/dance/nightmare/nightmare (1).webp',
     title: 'Nightmare',
-    photoDetail:
+    description:
         'Choreographer: Guan-Ying Guo\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/nightmare/nightmare (1).webp',
@@ -93,7 +112,7 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/dance/roaming_dream/roaming dream (1).webp',
     title: 'Roaming Dream',
-    photoDetail:
+    description:
         'Choreographer: Yi-Jie Cao\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/roaming_dream/roaming dream (1).webp',
@@ -104,7 +123,7 @@ final List<Photo> dancePhoto = [
   Photo(
     coverImagePath: 'assets/images/dance/sword_tells/sword tells (4).webp',
     title: 'To the Sword',
-    photoDetail:
+    description:
         'Choreographer: Sih-Han Chiao\nPhotographer: Wei-Chia Su, Yu-Ting, Fang, Yan Yong Liao, En-Qi',
     contentImages: [
       'assets/images/dance/sword_tells/sword tells (4).webp',
@@ -121,7 +140,7 @@ final List<Photo> dancePhoto = [
     coverImagePath:
         'assets/images/dance/the_rhythm_of_ink/the rhythm of ink (1).webp',
     title: 'The Rhythm of Ink',
-    photoDetail: 'Choreographer: Yi-Ning Ciou\nPhotographer: Wuhan',
+    description: 'Choreographer: Yi-Ning Ciou\nPhotographer: Wuhan',
     contentImages: [
       'assets/images/dance/the_rhythm_of_ink/the rhythm of ink (1).webp',
       'assets/images/dance/the_rhythm_of_ink/the rhythm of ink (2).webp',

@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../component/header_bar.dart';
 import '../constant.dart';
 import '../provider/contact_and_about_provider.dart';
-import '../repository/string_content_repository.dart';
 import '../url.dart';
 
 class ContactPage extends StatelessWidget {

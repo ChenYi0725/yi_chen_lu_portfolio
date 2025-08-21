@@ -28,7 +28,6 @@ class ResumeField extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        // color: hover ? Colors.grey.shade50 : Colors.transparent,
         child: Row(
           children: [
             Expanded(

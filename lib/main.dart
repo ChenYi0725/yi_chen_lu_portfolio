@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:yi_chen_lu_protfolio/repository/image_content_repository.dart';
 import 'package:yi_chen_lu_protfolio/router.dart';
-import 'package:yi_chen_lu_protfolio/repository/string_content_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

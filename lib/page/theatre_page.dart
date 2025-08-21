@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yi_chen_lu_protfolio/component/center_in_wide_screen.dart';
 import 'package:yi_chen_lu_protfolio/constant.dart';
 import '../component/photo/gallery.dart';
 import '../component/header_bar.dart';
 import '../photo_list.dart';
-import '../component/photo/animated_photo.dart';
 import 'package:go_router/go_router.dart';
 
 class TheatrePage extends StatelessWidget {

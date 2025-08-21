@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:yi_chen_lu_protfolio/constant.dart';
 import 'package:yi_chen_lu_protfolio/model/photo_model.dart';
@@ -23,9 +22,9 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
     return MouseRegion(
       onEnter: (event) {
         final size = context.size ?? Size.zero; //widget size
-        final mouseEnterPosition = event.localPosition; //相對於 widget 左上角
+        final mouseEnterPosition = event.localPosition;
         setState(() {
-          _mousePosition = mouseEnterPosition; // 加這行
+          _mousePosition = mouseEnterPosition;
           _translation = _getDirectionOffset(_mousePosition!, size);
           _opacity = 1.0;
         });

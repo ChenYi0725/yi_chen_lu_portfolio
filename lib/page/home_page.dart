@@ -12,8 +12,7 @@ class HomePageWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) =>
-          CoverProvider()..loadPhotos(coverUrl, context), // 這裡就先 fetch
+      create: (_) => CoverProvider()..loadPhotos(coverUrl, context),
       child: const HomePage(),
     );
   }
@@ -50,18 +49,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer<CoverProvider>(
       builder: (context, provider, child) {
-        final photos = provider.photos; // 直接拿 widget list
+        final photos = provider.photos;
 
         if (photos.isEmpty) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         }
-
-        // 啟動輪播
         _startAutoFade(photos.length);
 
-        final currentPhoto = photos[_currentIndex]; // 已經是 widget
+        final currentPhoto = photos[_currentIndex];
         final screenWidth = MediaQuery.of(context).size.width;
 
         return Scaffold(

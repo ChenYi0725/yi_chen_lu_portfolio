@@ -85,11 +85,9 @@ TextStyle homePageEnterStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 10,
-  // fontWeight: FontWeight.w400,
 );
 TextStyle homePageCareerStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 16,
-  // fontWeight: FontWeight.w700,
 );

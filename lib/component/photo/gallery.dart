@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:yi_chen_lu_protfolio/component/center_in_wide_screen.dart';
 import 'package:yi_chen_lu_protfolio/component/photo/animated_photo.dart';
 import 'package:yi_chen_lu_protfolio/component/photo/photo_detail.dart';
 

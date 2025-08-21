@@ -13,3 +13,6 @@ final Map<ResumePart, String> resumeUrl = {
   ResumePart.education:
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vTLxsA6x6kSBwmAnIVe4KF6ZAsHBGMyqMldReiBEJbBmrFmVeJF87HI_p_6-NVlTuMd9GQI0TF5nQo5/pub?gid=629687635&single=true&output=csv",
 };
+
+final danceUrl = "";
+final theatreUrl = "";

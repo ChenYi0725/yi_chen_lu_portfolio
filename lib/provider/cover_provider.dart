@@ -1,4 +1,3 @@
-// cover_provider.dart
 import 'package:flutter/material.dart';
 import 'package:csv/csv.dart';
 import 'package:http/http.dart' as http;
