@@ -5,6 +5,7 @@ import 'package:yi_chen_lu_protfolio/provider/resume_field_provider.dart';
 import '../../constant.dart';
 import '../../enum.dart';
 import '../../model/resume_program.dart';
+import '../../provider/responsive_provider.dart';
 
 class ResumeSection<T> extends StatelessWidget {
   const ResumeSection({

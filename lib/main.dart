@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yi_chen_lu_protfolio/provider/responsive_provider.dart';
 import 'package:yi_chen_lu_protfolio/router.dart';
 
 void main() async {
@@ -12,17 +14,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: MaterialApp.router(
-        theme: ThemeData(
-          primarySwatch: Colors.grey,
-          scaffoldBackgroundColor: Colors.grey,
-          progressIndicatorTheme: ProgressIndicatorThemeData(
-            color: Colors.white,
+      child: ChangeNotifierProvider(
+        create: (_) => ResponsiveProvider(context),
+        child: MaterialApp.router(
+          theme: ThemeData(
+            primarySwatch: Colors.grey,
+            scaffoldBackgroundColor: Colors.grey,
+            progressIndicatorTheme: ProgressIndicatorThemeData(
+              color: Colors.white,
+            ),
           ),
+          debugShowCheckedModeBanner: false,
+          routerConfig: router,
+          title: "protfolio",
         ),
-        debugShowCheckedModeBanner: false,
-        routerConfig: router,
-        title: "protfolio",
       ),
     );
   }

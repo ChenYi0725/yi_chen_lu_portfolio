@@ -20,97 +20,100 @@ class CarouselThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: thumbnailHeight * 1.5,
-      width: thumbnailWidth * 6.5, // 5 thumbnails + 2 arrows with spacing
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: Colors.black26),
-          BoxShadow(
-            color: Colors.grey[700]!,
-            blurRadius: 5,
-            spreadRadius: -5.0,
-          ),
-        ],
-      ),
-      child: Center(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _arrowButton(left: true, onTap: provider.goToPrevious),
-            SizedBox(
-              width: min(4 * thumbnailWidth, screenWidth),
-              height: thumbnailHeight,
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.horizontal,
-                itemCount: 4,
-                itemBuilder: (context, i) {
-                  int index;
+    return Center(
+      child: Container(
+        // height: thumbnailHeight * 1.5,
+        // width: thumbnailWidth * 6.5, // 5 thumbnails + 2 arrows with spacing
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(color: Colors.black26),
+            BoxShadow(
+              color: Colors.grey[700]!,
+              blurRadius: 5,
+              spreadRadius: -5.0,
+            ),
+          ],
+        ),
+        child: Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _arrowButton(left: true, onTap: provider.goToPrevious),
+              SizedBox(
+                width: min(4 * thumbnailWidth, screenWidth),
+                height: thumbnailHeight,
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 4,
+                  itemBuilder: (context, i) {
+                    int index;
 
-                  if (provider.currentIndex <= 1) {
-                    index = i;
-                  } else if (provider.currentIndex >= imageList.length - 2) {
-                    index = imageList.length - 4 + i;
-                  } else {
-                    index = provider.currentIndex - 1 + i;
-                  }
+                    if (provider.currentIndex <= 1) {
+                      index = i;
+                    } else if (provider.currentIndex >= imageList.length - 2) {
+                      index = imageList.length - 4 + i;
+                    } else {
+                      index = provider.currentIndex - 1 + i;
+                    }
 
-                  if (index < 0 || index >= imageList.length) {
-                    return SizedBox(width: thumbnailWidth);
-                  }
+                    if (index < 0 || index >= imageList.length) {
+                      return SizedBox(width: thumbnailWidth);
+                    }
 
-                  return GestureDetector(
-                    onTap: () => provider.goToIndex(index),
-                    child: Container(
-                      width: thumbnailWidth,
-                      height: thumbnailHeight,
-                      margin: const EdgeInsets.symmetric(horizontal: 2),
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
-                            offset: const Offset(1, 1),
-                          ),
-                        ],
-                      ),
-                      child: Stack(
-                        children: [
-                          Image.network(
-                            imageList[index],
-                            width: thumbnailWidth,
-                            height: thumbnailHeight,
-                            fit: BoxFit.cover,
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return const Center(
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                ),
-                              );
-                            },
-                          ),
-                          if (index == provider.currentIndex)
-                            Positioned.fill(
-                              child: Container(
-                                // color: Colors.white.withOpacity(0.7),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 2,
-                                    color: Colors.grey,
+                    return GestureDetector(
+                      onTap: () => provider.goToIndex(index),
+                      child: Container(
+                        width: thumbnailWidth,
+                        height: thumbnailHeight,
+                        margin: const EdgeInsets.symmetric(horizontal: 2),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.15),
+                              offset: const Offset(1, 1),
+                            ),
+                          ],
+                        ),
+                        child: Stack(
+                          children: [
+                            Image.network(
+                              imageList[index],
+                              width: thumbnailWidth,
+                              height: thumbnailHeight,
+                              fit: BoxFit.cover,
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                    );
+                                  },
+                            ),
+                            if (index == provider.currentIndex)
+                              Positioned.fill(
+                                child: Container(
+                                  // color: Colors.white.withOpacity(0.7),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-            _arrowButton(left: false, onTap: provider.goToNext),
-          ],
+              _arrowButton(left: false, onTap: provider.goToNext),
+            ],
+          ),
         ),
       ),
     );

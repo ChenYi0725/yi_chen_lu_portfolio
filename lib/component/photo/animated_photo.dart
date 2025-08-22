@@ -56,17 +56,11 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
           Positioned.fill(
             child: Stack(
               children: [
-                Container(
-                  decoration: BoxDecoration(color: Colors.grey),
-
+                Image.network(
+                  widget.photo.coverImagePath,
+                  fit: BoxFit.cover,
                   width: double.infinity,
                   height: double.infinity,
-                  child: Image.network(
-                    widget.photo.coverImagePath,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                  ),
                 ),
               ],
             ),

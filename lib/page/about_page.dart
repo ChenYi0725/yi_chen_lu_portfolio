@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../component/header_bar.dart';
 import '../constant.dart';
 import '../provider/contact_and_about_provider.dart';
+import '../provider/responsive_provider.dart';
 import '../url.dart';
 
 class AboutPage extends StatelessWidget {
@@ -11,6 +12,8 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = Provider.of<ResponsiveProvider>(context).isMobile;
+
     return ChangeNotifierProvider(
       create: (_) =>
           ContactAndAboutProvider(sheetCsvUrl: aboutAndContactUrl)..loadData(),
@@ -19,15 +22,14 @@ class AboutPage extends StatelessWidget {
           return Scaffold(
             appBar: HeaderBar(
               currentRoute: '/about',
-              onNavItemSelected: (route) {
-                context.go(route);
-              },
+              onNavItemSelected: (route) => context.go(route),
             ),
             backgroundColor: themeColor,
             body: (!provider.loaded)
                 ? Center(child: CircularProgressIndicator())
                 : Center(
-                    child: Row(
+                    child: Flex(
+                      direction: isMobile ? Axis.vertical : Axis.horizontal,
                       children: [
                         Expanded(
                           child: Padding(
@@ -38,7 +40,7 @@ class AboutPage extends StatelessWidget {
                         Flexible(
                           fit: FlexFit.loose,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8),
                             child: SingleChildScrollView(
                               child: Text(
                                 provider.aboutText,

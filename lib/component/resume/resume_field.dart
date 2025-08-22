@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:yi_chen_lu_protfolio/model/resume_program.dart';
 import 'package:yi_chen_lu_protfolio/provider/resume_field_provider.dart';
 import '../../constant.dart';
+import '../../provider/responsive_provider.dart';
 import '../../provider/resume_provider.dart';
 
 class ResumeField extends StatelessWidget {
@@ -21,7 +22,7 @@ class ResumeField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hover = context.watch<ResumeFieldProvider>().isHovering;
-
+    final isMobile = Provider.of<ResponsiveProvider>(context).isMobile;
     return MouseRegion(
       onEnter: (_) => context.read<ResumeFieldProvider>().setHover(true),
       onExit: (_) => context.read<ResumeFieldProvider>().setHover(false),
@@ -75,27 +76,40 @@ class ResumeField extends StatelessWidget {
                 ),
               ),
             ),
-            // if (resumeProgram.programLink.isNotEmpty && hover)
+
             Expanded(
               flex: 1,
-              child: Opacity(
-                opacity: hover ? 1.0 : 0.0,
-                child: InkWell(
-                  onTap: () => resumeProgram.isOutsideUrl
-                      ? _launchUrl(resumeProgram.programLink)
-                      : context.go(resumeProgram.programLink),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 10,
+              child: isMobile
+                  ? IconButton(
+                      color: Colors.white,
+                      onPressed: () {
+                        resumeProgram.isOutsideUrl
+                            ? _launchUrl(resumeProgram.programLink)
+                            : context.go(resumeProgram.programLink);
+                      },
+                      icon: Icon(Icons.search_rounded, color: Colors.white),
+                    )
+                  : Opacity(
+                      opacity: hover ? 1.0 : 0.0,
+                      child: InkWell(
+                        onTap: () => resumeProgram.isOutsideUrl
+                            ? _launchUrl(resumeProgram.programLink)
+                            : context.go(resumeProgram.programLink),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 10,
+                          ),
+                          color: Colors.white,
+                          child: Center(
+                            child: Text(
+                              "View Project",
+                              style: resumeRedirectStyle,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    color: Colors.white,
-                    child: Center(
-                      child: Text("View Project", style: resumeRedirectStyle),
-                    ),
-                  ),
-                ),
-              ),
             ),
           ],
         ),

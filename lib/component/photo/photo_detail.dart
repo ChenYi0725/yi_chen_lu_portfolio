@@ -13,30 +13,33 @@ class PhotoDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topLeft,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(top: 10),
-          width: double.infinity,
-          height: photoDetailHeight,
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: detailColor),
-          child: Carousel(
-            imageList: photo.contentImages,
-            title: photo.title,
-            detailContent: photo.description,
+    final screenHeight = MediaQuery.of(context).size.height;
+    return SingleChildScrollView(
+      child: Stack(
+        alignment: Alignment.topLeft,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            width: double.infinity,
+            height: screenHeight * 0.9,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(color: detailColor),
+            child: Carousel(
+              imageList: photo.contentImages,
+              title: photo.title,
+              detailContent: photo.description,
+            ),
           ),
-        ),
-        Positioned(
-          top: 1,
-          left: indicatorOffset,
-          child: ClipPath(
-            clipper: TriangleClipper(),
-            child: Container(width: 25, height: 15, color: detailColor),
+          Positioned(
+            top: 1,
+            left: indicatorOffset,
+            child: ClipPath(
+              clipper: TriangleClipper(),
+              child: Container(width: 25, height: 15, color: detailColor),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
