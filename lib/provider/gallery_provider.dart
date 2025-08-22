@@ -21,20 +21,14 @@ class GalleryProvider extends ChangeNotifier {
         photos = dataRows.map((row) {
           final data = row.toList();
           return Photo(
-            coverImagePath: "",
+            coverImagePath: data[2].toString(),
             title: data[0].toString(),
             description: data[1].toString(),
-            contentImages: [],
-
-            // programName: data[0].toString(),
-            // directorsName: data[1]
-            //     .toString()
-            //     .split(";")
-            //     .map((e) => e.trim())
-            //     .toList(),
-            // performanceVenues: data[2].toString(),
-            // performanceLocation: data[3].toString(),
-            // programLink: data[4].toString(),
+            contentImages: data[3]
+                .toString()
+                .split(",")
+                .map((e) => e.trim())
+                .toList(),
           );
         }).toList();
 

@@ -54,8 +54,24 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
       child: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(widget.photo.coverImagePath, fit: BoxFit.cover),
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(color: Colors.grey),
+
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Image.network(
+                    widget.photo.coverImagePath,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+              ],
+            ),
           ),
+
           Positioned.fill(
             child: ClipRect(
               child: AnimatedOpacity(

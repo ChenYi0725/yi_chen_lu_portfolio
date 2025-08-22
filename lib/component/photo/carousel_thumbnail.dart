@@ -76,11 +76,19 @@ class CarouselThumbnail extends StatelessWidget {
                       ),
                       child: Stack(
                         children: [
-                          Image.asset(
+                          Image.network(
                             imageList[index],
                             width: thumbnailWidth,
                             height: thumbnailHeight,
                             fit: BoxFit.cover,
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              );
+                            },
                           ),
                           if (index == provider.currentIndex)
                             Positioned.fill(

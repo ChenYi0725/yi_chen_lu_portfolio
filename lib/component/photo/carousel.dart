@@ -54,10 +54,16 @@ class Carousel extends StatelessWidget {
                         child: ClipRect(
                           child: Align(
                             alignment: Alignment.topCenter,
-                            child: Image.asset(
+                            child: Image.network(
                               provider.currentImage,
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  },
                               key: ValueKey(provider.currentImage),
-                              // width: displayImageWidth,
                               height: displayImageHeight,
                               fit: BoxFit.fitWidth,
                             ),

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:yi_chen_lu_protfolio/component/photo/gallery.dart';
 import 'package:yi_chen_lu_protfolio/component/header_bar.dart';
+import 'package:yi_chen_lu_protfolio/url.dart';
 
 import '../constant.dart';
 import '../photo_list.dart';
+import '../provider/gallery_provider.dart';
 
 class DancePage extends StatelessWidget {
   const DancePage({super.key});
@@ -25,11 +28,21 @@ class DancePage extends StatelessWidget {
           context.go(route);
         },
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Gallery(photoList: dancePhoto, initialExpandIndex: expandIndex),
-          ],
+      body: ChangeNotifierProvider(
+        create: (_) => GalleryProvider(url: danceUrl)..fetchPhotos(),
+        child: Consumer<GalleryProvider>(
+          builder: (context, provider, child) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Gallery(
+                    photoList: provider.photos, //,theatrePhotoUrl,
+                    initialExpandIndex: expandIndex,
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
