@@ -5,9 +5,7 @@ import 'package:yi_chen_lu_protfolio/provider/gallery_provider.dart';
 import 'package:yi_chen_lu_protfolio/url.dart';
 import '../component/photo/gallery.dart';
 import '../component/header_bar.dart';
-import '../photo_list.dart';
 import 'package:go_router/go_router.dart';
-import '../provider/resume_provider.dart';
 
 class TheatrePage extends StatelessWidget {
   @override

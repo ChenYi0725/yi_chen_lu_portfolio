@@ -4,9 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:yi_chen_lu_protfolio/component/photo/gallery.dart';
 import 'package:yi_chen_lu_protfolio/component/header_bar.dart';
 import 'package:yi_chen_lu_protfolio/url.dart';
-
 import '../constant.dart';
-import '../photo_list.dart';
 import '../provider/gallery_provider.dart';
 
 class DancePage extends StatelessWidget {

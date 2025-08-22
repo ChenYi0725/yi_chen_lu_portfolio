@@ -29,21 +29,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
-    - assets/images/cover/
-    - assets/images/theatre/cries_and_whispers/
-    - assets/images/dance/areca_nuts/
-    - assets/images/dance/my_name_is_shi/
-    - assets/images/dance/nightmare/
-    - assets/images/dance/roaming_dream/
-    - assets/images/dance/sword_tells/
-    - assets/images/dance/the_rhythm_of_ink/
+
 
   fonts:
     - family: Fustat
       fonts:
-#        - asset: assets/font/Fustat-VariableFont_wght.ttf
         - asset: assets/font/Fustat-Regular.ttf
         - asset: assets/font/Fustat-Bold.ttf
           weight: 700
