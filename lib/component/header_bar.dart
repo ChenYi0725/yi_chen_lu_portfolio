@@ -44,7 +44,7 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
             child: Row(
               mainAxisAlignment: !isMobile
                   ? MainAxisAlignment.spaceBetween
-                  : MainAxisAlignment.center,
+                  : MainAxisAlignment.start,
               children: [
                 // 左側名稱
                 !isMobile
