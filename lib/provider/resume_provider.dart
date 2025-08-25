@@ -22,7 +22,7 @@ class ResumeProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         final decoded = utf8.decode(response.bodyBytes);
         final rows = const CsvToListConverter().convert(decoded);
-        education = rows.map((row) => row[1].toString()).skip(1).toList();
+        education = rows.map((row) => row[0].toString()).skip(1).toList();
         notifyListeners();
       } else {
         debugPrint('Failed to load CSV: ${response.statusCode}');
@@ -40,7 +40,7 @@ class ResumeProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         final decoded = utf8.decode(response.bodyBytes);
         final rows = const CsvToListConverter().convert(decoded);
-        electrician = rows.map((row) => row[1].toString()).skip(1).toList();
+        electrician = rows.map((row) => row[0].toString()).skip(1).toList();
         notifyListeners();
       } else {
         debugPrint('Failed to load CSV: ${response.statusCode}');
@@ -61,7 +61,7 @@ class ResumeProvider with ChangeNotifier {
         final dataRows = rows.skip(1).toList();
 
         designerPrograms = dataRows.map((row) {
-          final data = row.skip(1).toList();
+          final data = row.toList();
           return ResumeProgram(
             programName: data[0].toString(),
             directorsName: data[1]
