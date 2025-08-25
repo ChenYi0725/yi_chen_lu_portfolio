@@ -45,7 +45,7 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 mainAxisAlignment: !isMobile
                     ? MainAxisAlignment.spaceBetween
-                    : MainAxisAlignment.start,
+                    : MainAxisAlignment.center,
                 children: [
                   // 左側名稱
                   !isMobile
@@ -97,17 +97,12 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
                             item['label']!,
                             overflow: TextOverflow.ellipsis,
                             softWrap: false,
-                            style: !isMobile
-                                ? headerBarTextStyle.copyWith(
-                                    fontWeight: isSelected
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
-                                  )
-                                : mobileHeaderBarTextStyle.copyWith(
-                                    fontWeight: isSelected
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
-                                  ),
+                            style: headerBarTextStyle.copyWith(
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                              fontSize: !isMobile ? 16 : 14,
+                            ),
                           ),
                         ),
                       );

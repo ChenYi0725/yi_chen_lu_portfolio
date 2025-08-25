@@ -66,7 +66,7 @@ TextStyle headerBarTextStyle = TextStyle(
 TextStyle mobileHeaderBarTextStyle = TextStyle(
   fontFamily: 'Fustat',
   color: Colors.grey[300],
-  fontSize: 12,
+  fontSize: 14,
 );
 TextStyle headerBarNameStyle = GoogleFonts.reemKufi(
   color: Colors.white,
