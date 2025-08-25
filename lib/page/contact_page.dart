@@ -40,11 +40,6 @@ class ContactPage extends StatelessWidget {
                       ),
                     ),
                   ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                print(responsive.isMobile);
-              },
-            ),
           );
         },
       ),
