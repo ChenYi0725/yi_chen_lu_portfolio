@@ -10,20 +10,10 @@ TextStyle animatedPhotoStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
   fontSize: 24,
+  fontWeight: FontWeight.w700,
 );
 
-// contact and about
-TextStyle contactTextStyle = const TextStyle(
-  fontFamily: 'Fustat',
-  color: Colors.white,
-  fontSize: 20,
-);
-TextStyle aboutTextStyle = const TextStyle(
-  fontFamily: 'Fustat',
-  color: Colors.white,
-  fontSize: 20,
-);
-//detail
+//detail (carousel)
 TextStyle photoDetailTitleStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.white,
@@ -35,6 +25,17 @@ TextStyle photoDetailContentStyle = const TextStyle(
   fontFamily: 'Fustat',
   color: Colors.grey,
   fontSize: 18,
+);
+// contact and about
+TextStyle contactTextStyle = const TextStyle(
+  fontFamily: 'Fustat',
+  color: Colors.white,
+  fontSize: 20,
+);
+TextStyle aboutTextStyle = const TextStyle(
+  fontFamily: 'Fustat',
+  color: Colors.white,
+  fontSize: 20,
 );
 
 //resume

@@ -18,6 +18,8 @@ class Gallery extends StatefulWidget {
 
 class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
   late final PhotoExpansionController _controller;
+  final ScrollController _scrollController = ScrollController();
+  final Map<int, GlobalKey> _photoKeys = {}; // 每張圖對應的 key
 
   int _getImagePerRow() {
     final isMobile = context.read<ResponsiveProvider>().isMobile;
@@ -33,14 +35,24 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
     });
 
     if (widget.initialExpandIndex != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        final targetIndex = widget.initialExpandIndex!;
         _controller.toggle(
-          index: widget.initialExpandIndex!,
-          row:
-              widget.initialExpandIndex! ~/
-              _getImagePerRow() *
-              _getImagePerRow(),
+          index: targetIndex,
+          row: targetIndex ~/ _getImagePerRow() * _getImagePerRow(),
         );
+
+        await Future.delayed(const Duration(milliseconds: 300));
+
+        final key = _photoKeys[targetIndex];
+        if (key != null && key.currentContext != null) {
+          await Scrollable.ensureVisible(
+            key.currentContext!,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+            alignment: -1,
+          );
+        }
       });
     }
   }
@@ -48,6 +60,7 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
   @override
   void dispose() {
     _controller.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -72,7 +85,6 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
                 : i + imagePerRow,
           );
 
-          // 圖片列
           rowWidgets.add(
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
@@ -84,13 +96,26 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
                   }
 
                   int actualIndex = i + j;
+
+                  _photoKeys.putIfAbsent(actualIndex, () => GlobalKey());
+
                   return GestureDetector(
                     onTap: () {
                       _controller.toggle(index: actualIndex, row: i);
+
+                      final key = _photoKeys[actualIndex];
+                      if (key != null && key.currentContext != null) {
+                        Scrollable.ensureVisible(
+                          key.currentContext!,
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeInOut,
+                        );
+                      }
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
+                        key: _photoKeys[actualIndex],
                         height: photoHeight,
                         width: photoWidth,
                         child: AnimatedPhoto(
@@ -121,14 +146,10 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
                 curve: Curves.easeInOut,
                 alignment: Alignment.topCenter,
                 child: shouldShowDetail
-                    ? SingleChildScrollView(
-                        child: PhotoDetail(
-                          photo: widget.photoList[_controller.expandedIndex!],
-                          indicatorOffset:
-                              tappedIndexInRow * photoWidth +
-                              photoWidth / 2 -
-                              10,
-                        ),
+                    ? PhotoDetail(
+                        photo: widget.photoList[_controller.expandedIndex!],
+                        indicatorOffset:
+                            tappedIndexInRow * photoWidth + photoWidth / 2 - 10,
                       )
                     : const SizedBox.shrink(),
               ),
@@ -136,7 +157,10 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
           );
         }
 
-        return Column(children: rowWidgets);
+        return SingleChildScrollView(
+          controller: _scrollController,
+          child: Column(children: rowWidgets),
+        );
       },
     );
   }
