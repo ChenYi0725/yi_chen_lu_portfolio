@@ -36,14 +36,6 @@ class ResumeSection<T> extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (type == ResumePart.masterElectrician)
-                ...(items as List<String>).map(
-                  (text) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(text, style: resumePureTextStyle),
-                  ),
-                ),
-
               if (type == ResumePart.lightingDesign)
                 ...(items as List<ResumeProgram>).map(
                   (item) => Column(
@@ -56,14 +48,28 @@ class ResumeSection<T> extends StatelessWidget {
                     ],
                   ),
                 ),
-
-              if (type == ResumePart.education)
-                ...(items as List<String>).map(
-                  (text) => Padding(
+              if (type == ResumePart.masterElectrician ||
+                  type == ResumePart.education)
+                ...(items as List<String>).map((line) {
+                  final parts = line.split(';');
+                  return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(text, style: resumePureTextStyle),
-                  ),
-                ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 平均分配
+                      children: parts
+                          .map(
+                            (part) => Expanded(
+                              child: Text(
+                                part,
+                                style: resumePureTextStyle,
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  );
+                }),
             ],
           ),
         ),
