@@ -92,7 +92,7 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(imagePerRow, (j) {
                   if (j >= rowItems.length) {
-                    return const Expanded(child: SizedBox());
+                    return SizedBox(width: photoWidth, height: photoHeight);
                   }
 
                   int actualIndex = i + j;
