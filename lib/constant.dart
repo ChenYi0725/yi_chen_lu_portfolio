@@ -6,11 +6,9 @@ double resumePadding = 30;
 
 Color themeColor = Colors.black87;
 // animated photo
-TextStyle animatedPhotoStyle = const TextStyle(
-  fontFamily: 'Fustat',
+TextStyle animatedPhotoStyle = GoogleFonts.reemKufi(
   color: Colors.white,
   fontSize: 24,
-  fontWeight: FontWeight.w700,
 );
 
 //detail (carousel)
