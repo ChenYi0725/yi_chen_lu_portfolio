@@ -56,7 +56,7 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: 'YICHEN   LU',
+                                  text: 'YI-CHEN   LU',
                                   style: headerBarNameStyle,
                                 ),
                                 TextSpan(text: "  "),

@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'YICHEN  LU',
+                      'YI-CHEN  LU',
                       style: homePageNameStyle,
                       textAlign: TextAlign.left,
                     ),

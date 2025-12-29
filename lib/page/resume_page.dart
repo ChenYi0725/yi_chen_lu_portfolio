@@ -40,7 +40,7 @@ class ResumePage extends StatelessWidget {
                         ),
                         //---
                         ResumeSection(
-                          title: 'MASTER  ELETRICTIAN',
+                          title: 'OTHER EXPERIENCE',
                           items: provider.electrician,
                           type: ResumePart.masterElectrician,
                         ),
