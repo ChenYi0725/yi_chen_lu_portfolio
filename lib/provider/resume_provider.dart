@@ -35,7 +35,7 @@ class ResumeProvider with ChangeNotifier {
   Future<void> loadElectrician() async {
     try {
       final response = await http.get(
-        Uri.parse(urls[ResumePart.masterElectrician]!),
+        Uri.parse(urls[ResumePart.otherExperience]!),
       );
       if (response.statusCode == 200) {
         final decoded = utf8.decode(response.bodyBytes);

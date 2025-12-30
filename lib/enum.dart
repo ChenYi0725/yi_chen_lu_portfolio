@@ -1,1 +1,1 @@
-enum ResumePart { lightingDesign, masterElectrician, education }
+enum ResumePart { lightingDesign, otherExperience, education }

@@ -8,7 +8,7 @@ final coverUrl =
 final Map<ResumePart, String> resumeUrl = {
   ResumePart.lightingDesign:
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=1748811682&single=true&output=csv",
-  ResumePart.masterElectrician:
+  ResumePart.otherExperience:
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=92366686&single=true&output=csv",
   ResumePart.education:
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=1523812148&single=true&output=csv",
@@ -18,3 +18,5 @@ final danceUrl =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=902176964&single=true&output=csv";
 final theatreUrl =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=617218655&single=true&output=csv";
+final resumePdfSheetUrl =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=1349014262&single=true&output=csv';

@@ -18,6 +18,7 @@ class ResumePage extends StatelessWidget {
         ..loadEducation()
         ..loadElectrician()
         ..loadLightingDesign(),
+
       child: Consumer<ResumeProvider>(
         builder: (context, provider, child) {
           return Scaffold(
@@ -42,7 +43,7 @@ class ResumePage extends StatelessWidget {
                         ResumeSection(
                           title: 'OTHER EXPERIENCE',
                           items: provider.electrician,
-                          type: ResumePart.masterElectrician,
+                          type: ResumePart.otherExperience,
                         ),
                         //---
                         ResumeSection(
