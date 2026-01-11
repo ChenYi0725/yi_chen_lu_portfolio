@@ -1,32 +1,42 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import fetch from 'node-fetch';
+import type { VercelRequest, VercelResponse } from 'vercel';
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export const config = {
+  runtime: 'nodejs',
+};
+
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
+  const rawUrl = req.query.url;
+
+  if (!rawUrl || typeof rawUrl !== 'string') {
+    res.status(400).send('Missing url');
+    return;
+  }
+
+
+  const targetUrl = decodeURIComponent(rawUrl);
+
   try {
-    const url = req.query.url as string;
+    const response = await fetch(targetUrl);
 
-    if (!url) {
-      res.status(400).send('Missing url query parameter');
-      return;
-    }
-
-    // Server 端抓圖片
-    const response = await fetch(url);
     if (!response.ok) {
-      res.status(502).send('Failed to fetch image');
+      res.status(response.status).send('Failed to fetch image');
       return;
     }
 
-    const contentType = response.headers.get('content-type') || 'image/jpeg';
-    const buffer = await response.arrayBuffer();
+    const contentType = response.headers.get('content-type');
+    if (contentType) {
+      res.setHeader('Content-Type', contentType);
+    }
 
+    const buffer = Buffer.from(await response.arrayBuffer());
 
-    res.setHeader('Content-Type', contentType);
-    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Cache-Control', 'public, max-age=86400');
-    res.send(Buffer.from(buffer));
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Server error');
+
+    res.status(200).send(buffer);
+  } catch (error) {
+    res.status(500).send('Proxy error');
   }
 }
