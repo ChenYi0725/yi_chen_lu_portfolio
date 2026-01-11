@@ -72,17 +72,19 @@ class ResumeSection<T> extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: parts
-                          .map(
-                            (part) => Expanded(
-                              child: Text(
-                                part,
-                                style: resumePureTextStyle,
-                                textAlign: TextAlign.start,
-                              ),
+                      children: [
+                        ...parts.map(
+                          (part) => Expanded(
+                            flex: 2,
+                            child: Text(
+                              part,
+                              style: resumePureTextStyle,
+                              textAlign: TextAlign.start,
                             ),
-                          )
-                          .toList(),
+                          ),
+                        ),
+                        Expanded(flex: 1, child: SizedBox.shrink()),
+                      ],
                     ),
                   );
                 }),
@@ -93,17 +95,24 @@ class ResumeSection<T> extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: parts
-                          .map(
-                            (part) => Expanded(
-                              child: Text(
-                                part,
-                                style: resumePureTextStyle,
-                                textAlign: TextAlign.start,
-                              ),
+                      children: [
+                        ...parts.map(
+                          (part) => Expanded(
+                            flex: 2,
+                            child: Text(
+                              part,
+                              style: resumePureTextStyle,
+                              textAlign: TextAlign.start,
                             ),
-                          )
-                          .toList(),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: SizedBox.shrink(),
+                        ), // 這是為了對齊用的，未來記得改掉
+                        Expanded(flex: 2, child: SizedBox.shrink()),
+                        Expanded(flex: 1, child: SizedBox.shrink()),
+                      ],
                     ),
                   );
                 }),
@@ -122,7 +131,6 @@ class ResumeSection<T> extends StatelessWidget {
 
                     final pdfUrl = snapshot.data;
 
-                    // A1 空 / 請求失敗 → 不顯示按鈕
                     if (pdfUrl == null || pdfUrl.isEmpty) {
                       return const SizedBox();
                     }
