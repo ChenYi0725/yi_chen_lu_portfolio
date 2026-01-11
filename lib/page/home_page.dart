@@ -33,8 +33,19 @@ class _HomePageState extends State<HomePage> {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
       if (!mounted || photoCount == 0) return;
-      setState(() {
-        _currentIndex = (_currentIndex + 1) % photoCount;
+
+      // ⭐ 先預載下一張
+      final nextIndex = (_currentIndex + 1) % photoCount;
+      final provider = Provider.of<CoverProvider>(context, listen: false);
+
+      // 預載下一張，稍微等一下再切換
+      provider.preloadImages(nextIndex, context);
+
+      Future.delayed(const Duration(milliseconds: 200), () {
+        if (!mounted) return;
+        setState(() {
+          _currentIndex = nextIndex;
+        });
       });
     });
   }
@@ -42,6 +53,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _timer?.cancel();
+    // ⭐ 清理圖片快取
+    imageCache.clear();
+    imageCache.clearLiveImages();
     super.dispose();
   }
 
@@ -49,16 +63,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer<CoverProvider>(
       builder: (context, provider, child) {
-        final photos = provider.photos;
+        final photoCount = provider.photoCount;
 
-        if (photos.isEmpty) {
+        if (photoCount == 0) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         }
-        _startAutoFade(photos.length);
+        _startAutoFade(photoCount);
 
-        final currentPhoto = photos[_currentIndex];
+        final currentPhoto = provider.getPhoto(_currentIndex);
         final screenWidth = MediaQuery.of(context).size.width;
 
         return Scaffold(
