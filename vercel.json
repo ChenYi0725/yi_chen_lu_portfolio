@@ -4,6 +4,10 @@
     {
       "src": "build/web/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "api/**/*.ts",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -17,6 +21,8 @@
     {
       "src": "/(.*)",
       "dest": "build/web/index.html"
-    }
+    },
+    { "src": "/api/(.*)", "dest": "/api/$1" }
   ]
+
 }
