@@ -30,18 +30,20 @@ class DancePage extends StatelessWidget {
         create: (_) => GalleryProvider(url: danceUrl)..fetchPhotos(),
         child: Consumer<GalleryProvider>(
           builder: (context, provider, child) {
-            return (!provider.loaded)
-                ? Center(child: CircularProgressIndicator())
-                : SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Gallery(
-                          photoList: provider.photos, //,theatrePhotoUrl,
-                          initialExpandIndex: expandIndex,
-                        ),
-                      ],
-                    ),
-                  );
+            if (provider.isLoading && provider.photos.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Gallery(
+                    photoList: provider.photos,
+                    initialExpandIndex: expandIndex,
+                  ),
+                ],
+              ),
+            );
           },
         ),
       ),

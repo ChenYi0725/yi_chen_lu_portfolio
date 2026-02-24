@@ -6,51 +6,62 @@ import 'package:http/http.dart' as http;
 import '../model/photo_model.dart';
 
 class GalleryProvider extends ChangeNotifier {
+  final String url;
+
   List<Photo> photos = [];
-  bool get loaded => photos.isNotEmpty;
-  String url;
+  bool isLoading = false;
+  bool hasLoadedOnce = false;
+
   GalleryProvider({required this.url});
-  Future<void> fetchPhotos() async {
+
+  Future<void> fetchPhotos({int retryCount = 0}) async {
+    const int maxRetry = 3;
+    const Duration retryDelay = Duration(seconds: 2);
+
+    isLoading = true;
+    notifyListeners();
+
     try {
       final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        final decoded = utf8.decode(response.bodyBytes);
-        final rows = const CsvToListConverter().convert(decoded);
-        final dataRows = rows.skip(1).toList();
 
-        photos = dataRows.map((row) {
-          final data = row.toList();
-          return Photo(
-            coverImagePath: data[2].toString(),
-            title: data[0].toString(),
-            description: data[1].toString(),
-            contentImages: data[3]
-                .toString()
-                .split(",")
-                .map((e) => e.trim())
-                .toList(),
-          );
-        }).toList();
-
-        notifyListeners();
-      } else {
-        debugPrint('Failed to load CSV: ${response.statusCode}');
+      if (response.statusCode != 200) {
+        throw Exception('HTTP ${response.statusCode}');
       }
+
+      final decoded = utf8.decode(response.bodyBytes);
+      final rows = const CsvToListConverter().convert(decoded);
+      final dataRows = rows.skip(1).toList();
+
+      photos = dataRows.map((row) {
+        final data = row.toList();
+        return Photo(
+          coverImagePath: data[2].toString(),
+          title: data[0].toString(),
+          description: data[1].toString(),
+          contentImages: data[3]
+              .toString()
+              .split(',')
+              .map((e) => e.trim())
+              .toList(),
+        );
+      }).toList();
+
+      hasLoadedOnce = true;
     } catch (e) {
-      debugPrint('Error fetching CSV: $e');
+      if (retryCount < maxRetry) {
+        debugPrint('Fetch failed, retry ${retryCount + 1}/$maxRetry');
+        await Future.delayed(retryDelay);
+        return fetchPhotos(retryCount: retryCount + 1);
+      } else {
+        debugPrint('Fetch failed after $maxRetry retries: $e');
+      }
+    } finally {
+      isLoading = false;
+      notifyListeners();
     }
   }
-}
 
-// return Photo(
-// programName: data[0].toString(),
-// directorsName: data[1]
-//     .toString()
-//     .split(";")
-//     .map((e) => e.trim())
-//     .toList(),
-// performanceVenues: data[2].toString(),
-// performanceLocation: data[3].toString(),
-// programLink: data[4].toString(),
-// isOutsideUrl: data[5].toString().toLowerCase() == 'true',
-// );
+  Future<void> reload() async {
+    await fetchPhotos();
+  }
+}

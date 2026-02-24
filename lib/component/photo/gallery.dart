@@ -90,7 +90,8 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
+                      child: Container(
+                        color: Colors.grey[700],
                         height: photoHeight,
                         width: photoWidth,
                         child: AnimatedPhoto(
