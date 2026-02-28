@@ -18,11 +18,13 @@
     { "src": "/flutter_bootstrap.js", "dest": "build/web/flutter_bootstrap.js" },
     { "src": "/main.dart.js", "dest": "build/web/main.dart.js" },
     { "src": "/flutter_service_worker.js", "dest": "build/web/flutter_service_worker.js" },
+    { "src": "/sitemap.xml", "dest": "build/web/sitemap.xml" },
     {
       "src": "/(.*)",
       "dest": "build/web/index.html"
     },
     { "src": "/api/(.*)", "dest": "/api/$1" }
+
   ]
 
 }
