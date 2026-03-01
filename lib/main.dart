@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
           debugShowCheckedModeBanner: false,
           routerConfig: router,
-          title: "protfolio",
+          title: "Yi-Chen Lu | Lighting Designer",
         ),
       ),
     );
