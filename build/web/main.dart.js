@@ -83169,7 +83169,7 @@ A.tQ.prototype={
 G(){return"ResumePart."+this.b}}
 A.KF.prototype={
 L(a){var s=null,r=A.uA(s,s,B.cV,A.aze(s,s,s,B.j,s,s,s,s,s,s,s,s,s,s,s),B.cV,s)
-return A.au5(!0,A.lG(new A.tb($.aGc(),"protfolio",r,!1,s),new A.a9F(a),t.D3),!0)}}
+return A.au5(!0,A.lG(new A.tb($.aGc(),"Yi-Chen Lu | Lighting Designer",r,!1,s),new A.a9F(a),t.D3),!0)}}
 A.a9F.prototype={
 $1(a){return new A.px(this.a,$.al())},
 $S:579}
