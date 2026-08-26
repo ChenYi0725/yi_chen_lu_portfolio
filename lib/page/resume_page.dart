@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:yi_chen_lu_protfolio/provider/resume_provider.dart';
+
 import '../component/header_bar.dart';
+import '../component/resume/education_section.dart';
+import '../component/resume/experience_section.dart';
+import '../component/resume/lighting_design_section.dart';
 import '../component/resume/resume_section.dart';
 import '../constant.dart';
-import '../enum.dart';
+import '../provider/resume_provider.dart';
 import '../url.dart';
 
 class ResumePage extends StatelessWidget {
@@ -14,10 +17,7 @@ class ResumePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ResumeProvider(urls: resumeUrl)
-        ..loadEducation()
-        ..loadElectrician()
-        ..loadLightingDesign(),
+      create: (_) => ResumeProvider(urls: resumeUrl)..loadAll(),
 
       child: Consumer<ResumeProvider>(
         builder: (context, provider, child) {
@@ -29,32 +29,35 @@ class ResumePage extends StatelessWidget {
               },
             ),
             backgroundColor: themeColor,
-            body: (!provider.loaded)
-                ? Center(child: CircularProgressIndicator())
+            body: !provider.loaded
+                ? const Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
                     child: Column(
                       children: [
                         ResumeSection(
                           title: 'DESIGN EXPERIENCE',
-                          items: provider.designerPrograms,
-                          type: ResumePart.lightingDesign,
+                          child: LightingDesignSection(
+                            items: provider.designerPrograms,
+                          ),
                         ),
-                        //---
+
                         ResumeSection(
                           title: 'ASSOCIATE/ASSISTANT EXPERIENCE',
-                          items: provider.electrician,
-                          type: ResumePart.otherExperience,
+                          child: ExperienceSection(
+                            items: provider.associateExperience,
+                          ),
                         ),
+
                         ResumeSection(
                           title: 'OTHER LIGHTING EXPERIENCE',
-                          items: provider.electrician,
-                          type: ResumePart.otherExperience,
+                          child: ExperienceSection(
+                            items: provider.otherLightingExperience,
+                          ),
                         ),
-                        //---
+
                         ResumeSection(
                           title: 'EDUCATION',
-                          items: provider.education,
-                          type: ResumePart.education,
+                          child: EducationSection(items: provider.education),
                         ),
                       ],
                     ),

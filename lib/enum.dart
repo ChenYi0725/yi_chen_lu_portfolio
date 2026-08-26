@@ -1,3 +1,8 @@
-enum ResumePart { lightingDesign, otherExperience, education }
+enum ResumePart {
+  education,
+  lightingDesign,
+  associateExperience,
+  otherExperience,
+}
 
 enum GalleryType { gallery, url }

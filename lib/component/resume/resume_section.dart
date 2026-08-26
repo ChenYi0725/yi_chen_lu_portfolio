@@ -1,25 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:yi_chen_lu_protfolio/component/resume/resume_pdf_button.dart';
-import 'package:yi_chen_lu_protfolio/component/resume/resume_field.dart';
-import 'package:yi_chen_lu_protfolio/provider/resume_field_provider.dart';
-import '../../constant.dart';
-import '../../enum.dart';
-import '../../model/resume_program.dart';
-import '../../url.dart';
 
-class ResumeSection<T> extends StatelessWidget {
-  const ResumeSection({
-    super.key,
-    required this.title,
-    required this.items,
-    required this.type,
-  });
+import '../../constant.dart';
+
+class ResumeSection extends StatelessWidget {
+  const ResumeSection({super.key, required this.title, required this.child});
 
   final String title;
-  final List<T> items;
-  final ResumePart type;
-  static const List<String> resumeButtonNames = ['View Resume', 'View CV'];
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -34,98 +21,12 @@ class ResumeSection<T> extends StatelessWidget {
         ),
 
         const Divider(color: Colors.white, height: 2, thickness: 3),
+
         const SizedBox(height: 10),
 
         Padding(
           padding: EdgeInsets.symmetric(horizontal: resumePadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (type == ResumePart.lightingDesign)
-                ...(items as List<ResumeProgram>).map(
-                  (item) => Column(
-                    children: [
-                      ChangeNotifierProvider(
-                        create: (_) => ResumeFieldProvider(),
-                        child: ResumeField(resumeProgram: item),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                  ),
-                ),
-
-              if (type == ResumePart.otherExperience)
-                ...(items as List<String>).map((line) {
-                  final parts = line.split(';');
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ...parts.map(
-                          (part) => Expanded(
-                            flex: 2,
-                            child: Text(
-                              part,
-                              style: resumePureTextStyle,
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                        ),
-                        Expanded(flex: 1, child: SizedBox.shrink()),
-                      ],
-                    ),
-                  );
-                }),
-              if (type == ResumePart.education) ...[
-                ...(items as List<String>).map((line) {
-                  final parts = line.split(';');
-
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ...parts.map(
-                          (part) => Expanded(
-                            flex: 2,
-                            child: Text(
-                              part,
-                              style: resumePureTextStyle,
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                        ),
-
-                        const Expanded(flex: 2, child: SizedBox.shrink()),
-
-                        const Expanded(flex: 2, child: SizedBox.shrink()),
-
-                        const Expanded(flex: 1, child: SizedBox.shrink()),
-                      ],
-                    ),
-                  );
-                }),
-
-                const SizedBox(height: 20),
-
-                Row(
-                  children: List.generate(resumeButtonNames.length, (index) {
-                    return Padding(
-                      padding: EdgeInsets.only(
-                        right: index < resumeButtonNames.length - 1 ? 16 : 0,
-                      ),
-                      child: ResumePdfButton(
-                        sheetUrl: resumePdfSheetUrl,
-                        text: resumeButtonNames[index],
-                        index: index,
-                      ),
-                    );
-                  }),
-                ),
-              ],
-            ],
-          ),
+          child: child,
         ),
 
         const SizedBox(height: 20),
