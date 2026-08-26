@@ -5,6 +5,7 @@ import 'package:yi_chen_lu_protfolio/component/photo/gallery.dart';
 import 'package:yi_chen_lu_protfolio/component/header_bar.dart';
 import 'package:yi_chen_lu_protfolio/url.dart';
 import '../constant.dart';
+import '../enum.dart';
 import '../provider/gallery_provider.dart';
 
 class DancePage extends StatelessWidget {
@@ -27,7 +28,9 @@ class DancePage extends StatelessWidget {
         },
       ),
       body: ChangeNotifierProvider(
-        create: (_) => GalleryProvider(url: danceUrl)..fetchPhotos(),
+        create: (_) =>
+            GalleryProvider(url: danceUrl, type: GalleryType.gallery)
+              ..fetchPhotos(),
         child: Consumer<GalleryProvider>(
           builder: (context, provider, child) {
             if (provider.isLoading && provider.photos.isEmpty) {

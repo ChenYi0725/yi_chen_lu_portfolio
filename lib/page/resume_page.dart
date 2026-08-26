@@ -35,13 +35,18 @@ class ResumePage extends StatelessWidget {
                     child: Column(
                       children: [
                         ResumeSection(
-                          title: 'LIGHTING  DESIGNER',
+                          title: 'DESIGN EXPERIENCE',
                           items: provider.designerPrograms,
                           type: ResumePart.lightingDesign,
                         ),
                         //---
                         ResumeSection(
-                          title: 'OTHER EXPERIENCE',
+                          title: 'ASSOCIATE/ASSISTANT EXPERIENCE',
+                          items: provider.electrician,
+                          type: ResumePart.otherExperience,
+                        ),
+                        ResumeSection(
+                          title: 'OTHER LIGHTING EXPERIENCE',
                           items: provider.electrician,
                           type: ResumePart.otherExperience,
                         ),

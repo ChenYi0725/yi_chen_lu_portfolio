@@ -20,3 +20,9 @@ final theatreUrl =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=617218655&single=true&output=csv";
 final resumePdfSheetUrl =
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=1349014262&single=true&output=csv';
+final String operaUrl =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=1729048075&single=true&output=csv';
+final String assistantUrl =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=2038763785&single=true&output=csv';
+final String paperworkUrl =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_aHWHDOUINITmKyaHCruzfLF_UUZk7lB6ntky-syH1vCC4C-zyEFfVFlrcSju6OBPsfT661vJctBh/pub?gid=874534289&single=true&output=csv';

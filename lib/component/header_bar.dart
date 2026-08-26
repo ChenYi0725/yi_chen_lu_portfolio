@@ -17,7 +17,10 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
 
   final navItems = [
     {'label': 'Theatre', 'route': '/theatre'},
+    {'label': 'Opera', 'route': '/opera'},
     {'label': 'Dance', 'route': '/dance'},
+    {'label': 'Assistant', 'route': '/assistant'},
+    {'label': 'Paperwork', 'route': '/paperwork'},
     {'label': 'About', 'route': '/about'},
     {'label': 'Contact', 'route': '/contact'},
     {'label': 'Resume', 'route': '/resume'},

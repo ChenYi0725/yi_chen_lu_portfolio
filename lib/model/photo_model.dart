@@ -5,10 +5,13 @@ class Photo {
 
   final List<String> contentImages;
 
+  final String? url;
+
   Photo({
     required this.coverImagePath,
     required this.title,
     required this.description,
     List<String>? contentImages,
+    this.url,
   }) : contentImages = contentImages ?? [];
 }

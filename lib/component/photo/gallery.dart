@@ -5,6 +5,7 @@ import '../../model/photo_model.dart';
 import '../../provider/responsive_provider.dart';
 import 'animated_photo.dart';
 import 'photo_detail.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Gallery extends StatefulWidget {
   const Gallery({super.key, required this.photoList, this.initialExpandIndex});
@@ -85,7 +86,20 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
 
                   int actualIndex = i + j;
                   return GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      final photo = widget.photoList[actualIndex];
+
+                      if (photo.url != null && photo.url!.isNotEmpty) {
+                        final uri = Uri.parse(photo.url!);
+
+                        await launchUrl(
+                          uri,
+                          mode: LaunchMode.externalApplication,
+                        );
+
+                        return;
+                      }
+
                       _controller.toggle(index: actualIndex, row: i);
                     },
                     child: Padding(
