@@ -11,8 +11,7 @@ class AnimatedPhoto extends StatefulWidget {
   State<AnimatedPhoto> createState() => _AnimatedPhotoState();
 }
 
-class _AnimatedPhotoState extends State<AnimatedPhoto>
-    with SingleTickerProviderStateMixin {
+class _AnimatedPhotoState extends State<AnimatedPhoto> {
   Offset _translation = Offset.zero;
   double _opacity = 0.0;
   Offset? _mousePosition;
@@ -21,8 +20,9 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (event) {
-        final size = context.size ?? Size.zero; //widget size
+        final size = context.size ?? Size.zero;
         final mouseEnterPosition = event.localPosition;
+
         setState(() {
           _mousePosition = mouseEnterPosition;
           _translation = _getDirectionOffset(_mousePosition!, size);
@@ -30,6 +30,8 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
         });
 
         WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+
           setState(() {
             _translation = Offset.zero;
           });
@@ -54,15 +56,30 @@ class _AnimatedPhotoState extends State<AnimatedPhoto>
       child: Stack(
         children: [
           Positioned.fill(
-            child: Stack(
-              children: [
-                Image.network(
-                  widget.photo.coverImagePath,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
-              ],
+            child: Image.network(
+              widget.photo.coverImagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+              cacheWidth: 800,
+              gaplessPlayback: true,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                }
+
+                return Container(color: Colors.grey[700]);
+              },
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  color: Colors.grey[700],
+                  alignment: Alignment.center,
+                  child: const Icon(
+                    Icons.broken_image_outlined,
+                    color: Colors.white,
+                  ),
+                );
+              },
             ),
           ),
 

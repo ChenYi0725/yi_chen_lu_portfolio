@@ -36,6 +36,7 @@ class ResumePage extends StatelessWidget {
                       children: [
                         ResumeSection(
                           title: 'DESIGN EXPERIENCE',
+                          isEmpty: provider.designerPrograms.isEmpty,
                           child: LightingDesignSection(
                             items: provider.designerPrograms,
                           ),
@@ -43,6 +44,7 @@ class ResumePage extends StatelessWidget {
 
                         ResumeSection(
                           title: 'ASSOCIATE/ASSISTANT EXPERIENCE',
+                          isEmpty: provider.associateExperience.isEmpty,
                           child: ExperienceSection(
                             items: provider.associateExperience,
                           ),
@@ -50,6 +52,7 @@ class ResumePage extends StatelessWidget {
 
                         ResumeSection(
                           title: 'OTHER LIGHTING EXPERIENCE',
+                          isEmpty: provider.otherLightingExperience.isEmpty,
                           child: ExperienceSection(
                             items: provider.otherLightingExperience,
                           ),
@@ -57,6 +60,7 @@ class ResumePage extends StatelessWidget {
 
                         ResumeSection(
                           title: 'EDUCATION',
+                          isEmpty: provider.education.isEmpty,
                           child: EducationSection(items: provider.education),
                         ),
                       ],

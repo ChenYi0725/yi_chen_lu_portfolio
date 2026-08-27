@@ -3,13 +3,23 @@ import 'package:flutter/material.dart';
 import '../../constant.dart';
 
 class ResumeSection extends StatelessWidget {
-  const ResumeSection({super.key, required this.title, required this.child});
+  const ResumeSection({
+    super.key,
+    required this.title,
+    required this.child,
+    this.isEmpty = false,
+  });
 
   final String title;
   final Widget child;
+  final bool isEmpty;
 
   @override
   Widget build(BuildContext context) {
+    if (isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
