@@ -20,6 +20,33 @@ class Gallery extends StatefulWidget {
 class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
   late final PhotoExpansionController _controller;
 
+  Future<void> _precacheCoverImages() async {
+    for (final photo in widget.photoList) {
+      if (photo.coverImagePath.isEmpty) {
+        continue;
+      }
+
+      try {
+        await precacheImage(NetworkImage(photo.coverImagePath), context);
+      } catch (e) {
+        debugPrint(
+          'Failed to precache cover image: '
+          '${photo.coverImagePath}',
+        );
+      }
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant Gallery oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.photoList != widget.photoList &&
+        widget.photoList.isNotEmpty) {
+      _precacheCoverImages();
+    }
+  }
+
   int _getImagePerRow() {
     final isMobile = context.read<ResponsiveProvider>().isMobile;
     return isMobile ? 2 : 3;
