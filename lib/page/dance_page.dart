@@ -37,15 +37,9 @@ class DancePage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Gallery(
-                    photoList: provider.photos,
-                    initialExpandIndex: expandIndex,
-                  ),
-                ],
-              ),
+            return Gallery(
+              photoList: provider.photos,
+              initialExpandIndex: expandIndex,
             );
           },
         ),

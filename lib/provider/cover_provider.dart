@@ -1,17 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:csv/csv.dart';
-import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:csv/csv.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class CoverProvider extends ChangeNotifier {
   List<String> _photoUrls = [];
   bool _isLoading = true;
+  String? _errorMessage;
+  bool _isDisposed = false;
+
+  static const int _maxAttempts = 4;
+  static const Duration _requestTimeout = Duration(seconds: 12);
 
   // ⭐ 預載範圍：當前圖片的前後各 3 張
   static const int _preloadRange = 3;
 
   List<String> get photoUrls => _photoUrls;
   bool get isLoading => _isLoading;
+  String? get errorMessage => _errorMessage;
   int get photoCount => _photoUrls.length;
 
   // ✅ 動態建立圖片 Widget
@@ -31,8 +37,6 @@ class CoverProvider extends ChangeNotifier {
       memCacheHeight: 600,
       maxHeightDiskCache: 2400,
       maxWidthDiskCache: 2400,
-
-      httpHeaders: const {'Connection': 'keep-alive'},
 
       placeholder: (context, url) => Container(
         color: Colors.grey[900],
@@ -97,36 +101,58 @@ class CoverProvider extends ChangeNotifier {
   }
 
   Future<void> loadPhotos(String csvUrl, BuildContext context) async {
-    try {
-      final response = await http.get(Uri.parse(csvUrl));
-      if (response.statusCode == 200) {
-        final csvBody = response.body;
-        final rows = const CsvToListConverter().convert(csvBody);
+    _isLoading = true;
+    _errorMessage = null;
 
-        // ✅ 只存網址
-        _photoUrls = rows.map((row) => row[0].toString()).toList();
+    Object? lastError;
+    for (var attempt = 1; attempt <= _maxAttempts; attempt++) {
+      try {
+        final response = await http
+            .get(Uri.parse(csvUrl))
+            .timeout(_requestTimeout);
+        if (response.statusCode != 200) {
+          throw Exception('HTTP ${response.statusCode}');
+        }
 
+        final rows = const CsvToListConverter().convert(response.body);
+        final photoUrls = rows
+            .where((row) => row.isNotEmpty)
+            .map((row) => row.first.toString().trim())
+            .where((url) => url.isNotEmpty)
+            .toList();
+        if (photoUrls.isEmpty) {
+          throw const FormatException('The cover CSV contains no image URLs.');
+        }
+
+        if (_isDisposed) return;
+        _photoUrls = photoUrls;
         _isLoading = false;
         notifyListeners();
-
-        // ⭐ 載入完成後，預載前幾張圖片
-        if (_photoUrls.isNotEmpty) {
+        if (context.mounted) {
           preloadImages(0, context);
         }
-      } else {
-        debugPrint('Failed to load CSV: ${response.statusCode}');
-        _isLoading = false;
-        notifyListeners();
+        return;
+      } catch (error) {
+        lastError = error;
+        debugPrint('Cover load attempt $attempt/$_maxAttempts failed: $error');
+        if (attempt < _maxAttempts) {
+          await Future<void>.delayed(Duration(seconds: attempt * 2));
+        }
       }
-    } catch (e) {
-      debugPrint('Error fetching CSV: $e');
-      _isLoading = false;
-      notifyListeners();
     }
+
+    if (_isDisposed) return;
+    _isLoading = false;
+    _errorMessage = 'Cover photos are temporarily unavailable.';
+    debugPrint(
+      'Cover loading stopped after $_maxAttempts attempts: $lastError',
+    );
+    notifyListeners();
   }
 
   @override
   void dispose() {
+    _isDisposed = true;
     _photoUrls.clear();
     super.dispose();
   }

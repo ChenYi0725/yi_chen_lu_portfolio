@@ -9,6 +9,8 @@ import '../component/header_bar.dart';
 import 'package:go_router/go_router.dart';
 
 class TheatrePage extends StatelessWidget {
+  const TheatrePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final expandIndexStr = GoRouterState.of(
@@ -35,15 +37,9 @@ class TheatrePage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Gallery(
-                    photoList: provider.photos,
-                    initialExpandIndex: expandIndex,
-                  ),
-                ],
-              ),
+            return Gallery(
+              photoList: provider.photos,
+              initialExpandIndex: expandIndex,
             );
           },
         ),

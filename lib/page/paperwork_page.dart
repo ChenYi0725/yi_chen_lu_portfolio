@@ -32,9 +32,7 @@ class PaperworkPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            return SingleChildScrollView(
-              child: Column(children: [Gallery(photoList: provider.photos)]),
-            );
+            return Gallery(photoList: provider.photos);
           },
         ),
       ),

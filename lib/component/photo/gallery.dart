@@ -14,38 +14,11 @@ class Gallery extends StatefulWidget {
   final int? initialExpandIndex;
 
   @override
-  _GalleryState createState() => _GalleryState();
+  State<Gallery> createState() => _GalleryState();
 }
 
 class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
   late final PhotoExpansionController _controller;
-
-  Future<void> _precacheCoverImages() async {
-    for (final photo in widget.photoList) {
-      if (photo.coverImagePath.isEmpty) {
-        continue;
-      }
-
-      try {
-        await precacheImage(NetworkImage(photo.coverImagePath), context);
-      } catch (e) {
-        debugPrint(
-          'Failed to precache cover image: '
-          '${photo.coverImagePath}',
-        );
-      }
-    }
-  }
-
-  @override
-  void didUpdateWidget(covariant Gallery oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (oldWidget.photoList != widget.photoList &&
-        widget.photoList.isNotEmpty) {
-      _precacheCoverImages();
-    }
-  }
 
   int _getImagePerRow() {
     final isMobile = context.read<ResponsiveProvider>().isMobile;
@@ -90,19 +63,21 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
         final photoWidth = (constraintWidth - paddingHorizontal) / imagePerRow;
         final photoHeight = photoWidth * 2 / imagePerRow;
 
-        List<Widget> rowWidgets = [];
+        final rowCount = (widget.photoList.length / imagePerRow).ceil();
 
-        for (int i = 0; i < widget.photoList.length; i += imagePerRow) {
-          final rowItems = widget.photoList.sublist(
-            i,
-            (i + imagePerRow > widget.photoList.length)
-                ? widget.photoList.length
-                : i + imagePerRow,
-          );
+        return ListView.builder(
+          itemCount: rowCount,
+          itemBuilder: (context, rowIndex) {
+            final i = rowIndex * imagePerRow;
+            final rowItems = widget.photoList.sublist(
+              i,
+              (i + imagePerRow > widget.photoList.length)
+                  ? widget.photoList.length
+                  : i + imagePerRow,
+            );
 
-          // 圖片列
-          rowWidgets.add(
-            Padding(
+            // 圖片列
+            final photoRow = Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,20 +118,18 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
                   );
                 }),
               ),
-            ),
-          );
+            );
 
-          // 展開 detail
-          final tappedIndexInRow = _controller.expandedIndex != null
-              ? _controller.expandedIndex! - i
-              : 0;
-          final shouldShowDetail =
-              _controller.expandedIndex != null &&
-              _controller.expandedIndex! >= i &&
-              _controller.expandedIndex! < i + imagePerRow;
+            // 展開 detail
+            final tappedIndexInRow = _controller.expandedIndex != null
+                ? _controller.expandedIndex! - i
+                : 0;
+            final shouldShowDetail =
+                _controller.expandedIndex != null &&
+                _controller.expandedIndex! >= i &&
+                _controller.expandedIndex! < i + imagePerRow;
 
-          rowWidgets.add(
-            Padding(
+            final detail = Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: AnimatedSize(
                 duration: const Duration(milliseconds: 400),
@@ -174,11 +147,11 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
                       )
                     : const SizedBox.shrink(),
               ),
-            ),
-          );
-        }
+            );
 
-        return Column(children: rowWidgets);
+            return Column(children: [photoRow, detail]);
+          },
+        );
       },
     );
   }

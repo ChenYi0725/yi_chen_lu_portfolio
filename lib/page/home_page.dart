@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -65,9 +66,24 @@ class _HomePageState extends State<HomePage> {
       builder: (context, provider, child) {
         final photoCount = provider.photoCount;
 
-        if (photoCount == 0) {
+        if (provider.isLoading) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
+          );
+        }
+        if (photoCount == 0) {
+          return Scaffold(
+            backgroundColor: themeColor,
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(
+                  provider.errorMessage ?? 'Cover photos are unavailable.',
+                  style: const TextStyle(color: Colors.white70, fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
           );
         }
         _startAutoFade(photoCount);
@@ -118,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                           vertical: 8,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.0),
+                          color: Colors.transparent,
                           border: Border.all(color: Colors.white, width: 2),
                         ),
                         child: Text(
