@@ -126,7 +126,6 @@ class MobileCarousel extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
 
@@ -206,6 +205,5 @@ class NormalCarousel extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

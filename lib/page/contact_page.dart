@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../component/header_bar.dart';
 import '../constant.dart';
 import '../provider/contact_and_about_provider.dart';
-import '../provider/responsive_provider.dart';
 import '../url.dart';
 
 class ContactPage extends StatelessWidget {
@@ -12,7 +11,6 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final responsive = Provider.of<ResponsiveProvider>(context, listen: false);
     return ChangeNotifierProvider(
       create: (_) =>
           ContactAndAboutProvider(sheetCsvUrl: aboutAndContactUrl)..loadData(),

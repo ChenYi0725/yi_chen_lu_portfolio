@@ -6,7 +6,6 @@ import 'package:yi_chen_lu_protfolio/model/resume_program.dart';
 import 'package:yi_chen_lu_protfolio/provider/resume_field_provider.dart';
 import '../../constant.dart';
 import '../../provider/responsive_provider.dart';
-import '../../provider/resume_provider.dart';
 
 class ResumeField extends StatelessWidget {
   const ResumeField({super.key, required this.resumeProgram});

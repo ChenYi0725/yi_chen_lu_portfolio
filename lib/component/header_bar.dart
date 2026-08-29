@@ -1,3 +1,5 @@
+import 'dart:ui' show PointerDeviceKind;
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +8,8 @@ import 'package:yi_chen_lu_protfolio/constant.dart';
 import '../provider/responsive_provider.dart';
 
 class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
+  static const double _scrollableHeaderBreakpoint = 1100;
+
   final String currentRoute;
   final Function(String) onNavItemSelected;
 
@@ -36,6 +40,86 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
       context,
       listen: true,
     ).isMobile;
+    final useScrollableHeader =
+        isMobile ||
+        MediaQuery.sizeOf(context).width < _scrollableHeaderBreakpoint;
+
+    if (useScrollableHeader) {
+      return Material(
+        color: Colors.transparent,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 69,
+              child: ScrollConfiguration(
+                behavior: const _HeaderScrollBehavior(),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () => context.go('/'),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'YI-CHEN   LU',
+                                style: headerBarNameStyle,
+                              ),
+                              const TextSpan(text: '  '),
+                              TextSpan(
+                                text: 'LIGHTING DESIGNER',
+                                style: headerBarTitleStyle,
+                              ),
+                            ],
+                          ),
+                          softWrap: false,
+                        ),
+                      ),
+                      const SizedBox(width: 32),
+                      ...navItems.map((item) {
+                        final isSelected = currentRoute == item['route'];
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 24),
+                          child: InkWell(
+                            onTap: () => onNavItemSelected(item['route']!),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              decoration: isSelected
+                                  ? const BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(
+                                          color: Colors.white,
+                                          width: 2,
+                                        ),
+                                      ),
+                                    )
+                                  : null,
+                              child: Text(
+                                item['label']!,
+                                style: headerBarTextStyle.copyWith(
+                                  fontWeight: isSelected
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const Divider(height: 3, color: Colors.white54, thickness: 3),
+          ],
+        ),
+      );
+    }
 
     return Material(
       color: Colors.transparent,
@@ -121,4 +205,16 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(72);
+}
+
+class _HeaderScrollBehavior extends MaterialScrollBehavior {
+  const _HeaderScrollBehavior();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => const {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    PointerDeviceKind.stylus,
+    PointerDeviceKind.trackpad,
+  };
 }
