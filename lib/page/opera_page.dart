@@ -14,6 +14,12 @@ class OperaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final expandIndexStr = GoRouterState.of(
+      context,
+    ).uri.queryParameters['expandIndex'];
+    final expandIndex = expandIndexStr != null
+        ? int.tryParse(expandIndexStr)
+        : null;
     return Scaffold(
       backgroundColor: themeColor,
       appBar: HeaderBar(
@@ -24,7 +30,7 @@ class OperaPage extends StatelessWidget {
       ),
       body: ChangeNotifierProvider(
         create: (_) =>
-            GalleryProvider(url: operaUrl, type: GalleryType.url)
+            GalleryProvider(url: operaUrl, type: GalleryType.gallery)
               ..fetchPhotos(),
         child: Consumer<GalleryProvider>(
           builder: (context, provider, child) {
@@ -32,7 +38,10 @@ class OperaPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            return Gallery(photoList: provider.photos);
+            return Gallery(
+              photoList: provider.photos,
+              initialExpandIndex: expandIndex,
+            );
           },
         ),
       ),

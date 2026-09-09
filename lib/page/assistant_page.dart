@@ -14,6 +14,12 @@ class AssistantPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final expandIndexStr = GoRouterState.of(
+      context,
+    ).uri.queryParameters['expandIndex'];
+    final expandIndex = expandIndexStr != null
+        ? int.tryParse(expandIndexStr)
+        : null;
     return Scaffold(
       backgroundColor: themeColor,
       appBar: HeaderBar(
@@ -24,7 +30,7 @@ class AssistantPage extends StatelessWidget {
       ),
       body: ChangeNotifierProvider(
         create: (_) =>
-            GalleryProvider(url: assistantUrl, type: GalleryType.url)
+            GalleryProvider(url: assistantUrl, type: GalleryType.gallery)
               ..fetchPhotos(),
         child: Consumer<GalleryProvider>(
           builder: (context, provider, child) {
@@ -32,7 +38,10 @@ class AssistantPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            return Gallery(photoList: provider.photos);
+            return Gallery(
+              photoList: provider.photos,
+              initialExpandIndex: expandIndex,
+            );
           },
         ),
       ),

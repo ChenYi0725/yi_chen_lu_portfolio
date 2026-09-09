@@ -8,10 +8,16 @@ import 'photo_detail.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Gallery extends StatefulWidget {
-  const Gallery({super.key, required this.photoList, this.initialExpandIndex});
+  const Gallery({
+    super.key,
+    required this.photoList,
+    this.initialExpandIndex,
+    this.linksOnly = false,
+  });
 
   final List<Photo> photoList;
   final int? initialExpandIndex;
+  final bool linksOnly;
 
   @override
   State<Gallery> createState() => _GalleryState();
@@ -33,7 +39,7 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
       if (mounted) setState(() {});
     });
 
-    if (widget.initialExpandIndex != null) {
+    if (!widget.linksOnly && widget.initialExpandIndex != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _controller.toggle(
           index: widget.initialExpandIndex!,
@@ -97,12 +103,15 @@ class _GalleryState extends State<Gallery> with TickerProviderStateMixin {
                         await launchUrl(
                           uri,
                           mode: LaunchMode.externalApplication,
+                          webOnlyWindowName: '_self',
                         );
 
                         return;
                       }
 
-                      _controller.toggle(index: actualIndex, row: i);
+                      if (!widget.linksOnly) {
+                        _controller.toggle(index: actualIndex, row: i);
+                      }
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
