@@ -43,7 +43,7 @@ class ResumePage extends StatelessWidget {
                         ),
 
                         ResumeSection(
-                          title: 'ASSOCIATE/ASSISTANT EXPERIENCE',
+                          title: 'ASSISTANT EXPERIENCE',
                           isEmpty: provider.associateExperience.isEmpty,
                           child: ExperienceSection(
                             items: provider.associateExperience,

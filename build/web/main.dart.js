@@ -89515,7 +89515,7 @@ r=s.length
 q=b.b
 p=q.length
 o=b.c
-k=A.Pm(A.eS(A.b([new A.qv("DESIGN EXPERIENCE",new A.Mr(s,n),r===0,n),new A.qv("ASSOCIATE/ASSISTANT EXPERIENCE",new A.zC(q,n),p===0,n),new A.qv("OTHER LIGHTING EXPERIENCE",new A.zC(o,n),o.length===0,n),new A.qv("EDUCATION",new A.L3(l,n),k,n)],t.p),B.Z,B.Y,B.a3))
+k=A.Pm(A.eS(A.b([new A.qv("DESIGN EXPERIENCE",new A.Mr(s,n),r===0,n),new A.qv("ASSISTANT EXPERIENCE",new A.zC(q,n),p===0,n),new A.qv("OTHER LIGHTING EXPERIENCE",new A.zC(o,n),o.length===0,n),new A.qv("EDUCATION",new A.L3(l,n),k,n)],t.p),B.Z,B.Y,B.a3))
 l=k}return A.jP(m,B.v,l)},
 $S:616}
 A.agl.prototype={
